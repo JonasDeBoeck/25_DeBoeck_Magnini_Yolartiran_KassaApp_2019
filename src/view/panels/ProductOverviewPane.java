@@ -1,25 +1,16 @@
 package view.panels;
 
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 import model.Artikel;
 import model.Winkel;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 
@@ -82,7 +73,4 @@ public class ProductOverviewPane extends GridPane {
 		table.getColumns().setAll(artikelID, naam, prijs, aantalInStock, categorie);
 		this.add(table, 0,1,1,2);
 	}
-	
-	
-
 }
