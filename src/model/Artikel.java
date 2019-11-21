@@ -14,6 +14,14 @@ public class Artikel {
         setArtikelCategorie(artikelCategorie);
     }
 
+    public String toString() {
+        return artikelId + "," + naam + "," + artikelCategorie.getArtikelCategorieAlsString() + "," + parsePrijs(prijs) + "," + aantalInStock + "\n";
+    }
+
+    private String parsePrijs(double prijs) {
+        return Double.toString(prijs).replace(",", ". ");
+    }
+
     public String getArtikelId() {
         return artikelId;
     }

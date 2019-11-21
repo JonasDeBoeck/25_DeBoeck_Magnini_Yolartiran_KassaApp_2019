@@ -4,7 +4,9 @@ import model.Artikel;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class ArtikelDbInMemory {
@@ -33,5 +35,18 @@ public class ArtikelDbInMemory {
             System.out.println(e.getMessage());
         }
         return artikels;
+    }
+
+    public static void save(String fileNaam, Map<String, Artikel> artikels) {
+        File file = new File("src/bestanden/" + fileNaam);
+        try {
+            PrintWriter writer = new PrintWriter(file);
+            for (Artikel artikel : artikels.values()) {
+                writer.println(artikel.toString());
+            }
+            writer.close();
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
