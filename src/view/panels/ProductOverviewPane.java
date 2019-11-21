@@ -71,6 +71,8 @@ public class ProductOverviewPane extends GridPane {
 		final TableView<Map.Entry<String, Artikel>> table = new TableView<>(items);
 
 		table.getColumns().setAll(artikelID, naam, prijs, aantalInStock, categorie);
+		table.getSortOrder().add(naam);
+		table.sort();
 		this.add(table, 0,1,1,2);
 	}
 }
