@@ -25,7 +25,6 @@ public class ArtikelDbInMemory {
                 double prijs = Double.parseDouble(prijsAlsString.replace(". ", ","));
                 String aantalInStockAlsString = lijnScanner.next();
                 int aantalInStock = Integer.parseInt(aantalInStockAlsString);
-                System.out.println(artikelId + " " + naam + " " + artikelCategorie + " " + prijs + " " + aantalInStock);
                 Artikel artikel = new Artikel(artikelId, naam, prijs, aantalInStock, artikelCategorie);
                 artikels.put(artikelId, artikel);
                 lijnScanner.close();
