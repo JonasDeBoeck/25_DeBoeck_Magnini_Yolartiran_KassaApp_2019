@@ -1,6 +1,7 @@
 package database;
 
 import model.Artikel;
+import model.ArtikelFactory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,8 +14,8 @@ public class ArtikelDbInMemory {
     public static HashMap<String, Artikel> load(String fileNaam) {
         HashMap<String, Artikel> artikels = new HashMap<>();
         File file = new File("src/bestanden/" + fileNaam);
-        try {
-            Scanner scanner = new Scanner(file);
+        ArtikelFactory artikelFactory = ArtikelFactory.getInstance();
+        try (Scanner scanner = new Scanner(file)){
             while (scanner.hasNextLine()) {
                 Scanner lijnScanner = new Scanner(scanner.nextLine());
                 lijnScanner.useDelimiter(",");
@@ -25,11 +26,10 @@ public class ArtikelDbInMemory {
                 double prijs = Double.parseDouble(prijsAlsString.replace(". ", ","));
                 String aantalInStockAlsString = lijnScanner.next();
                 int aantalInStock = Integer.parseInt(aantalInStockAlsString);
-                Artikel artikel = new Artikel(artikelId, naam, prijs, aantalInStock, artikelCategorie);
+                Artikel artikel = artikelFactory.createArtikel(artikelId, naam, prijs, aantalInStock, artikelCategorie);
                 artikels.put(artikelId, artikel);
                 lijnScanner.close();
             }
-            scanner.close();
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
@@ -38,12 +38,10 @@ public class ArtikelDbInMemory {
 
     public static void save(String fileNaam, Map<String, Artikel> artikels) {
         File file = new File("src/bestanden/" + fileNaam);
-        try {
-            PrintWriter writer = new PrintWriter(file);
+        try (PrintWriter writer = new PrintWriter(file);) {
             for (Artikel artikel : artikels.values()) {
                 writer.println(artikel.toString());
             }
-            writer.close();
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
