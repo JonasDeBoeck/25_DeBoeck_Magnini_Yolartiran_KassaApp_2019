@@ -1,5 +1,7 @@
 package view.panels;
 
+import database.ArtikelTekstLoadSave;
+import database.DatabaseContext;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -20,7 +22,7 @@ public class ProductOverviewPane extends GridPane {
 	
 	
 	public ProductOverviewPane() {
-		winkel = new Winkel();
+		winkel = new Winkel(new DatabaseContext(new ArtikelTekstLoadSave()));
 
 		this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);

@@ -1,17 +1,17 @@
 package model;
 
 import database.ArtikelTekstLoadSave;
-import database.TekstLoadSaveTemplate;
+import database.DatabaseContext;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Winkel {
     private Map<String, Artikel> artikels;
-    private TekstLoadSaveTemplate db;
+    private DatabaseContext db;
 
-    public Winkel () {
-        db = new ArtikelTekstLoadSave();
+    public Winkel (DatabaseContext databaseContext) {
+        db = new DatabaseContext(new ArtikelTekstLoadSave());
         artikels = new HashMap<>();
         artikels.putAll(db.load("artikel.txt"));
     }
