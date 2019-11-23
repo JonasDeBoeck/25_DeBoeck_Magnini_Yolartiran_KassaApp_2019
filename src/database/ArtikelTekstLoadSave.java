@@ -10,8 +10,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class ArtikelDbInMemory {
-    public static HashMap<String, Artikel> load(String fileNaam) {
+public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate{
+
+    @Override
+    public Map<String, Artikel> read(String fileNaam) {
         HashMap<String, Artikel> artikels = new HashMap<>();
         File file = new File("src/bestanden/" + fileNaam);
         ArtikelFactory artikelFactory = ArtikelFactory.getInstance();
@@ -36,7 +38,8 @@ public class ArtikelDbInMemory {
         return artikels;
     }
 
-    public static void save(String fileNaam, Map<String, Artikel> artikels) {
+    @Override
+    public void write(String fileNaam, Map<String, Artikel> artikels) {
         File file = new File("src/bestanden/" + fileNaam);
         try (PrintWriter writer = new PrintWriter(file);) {
             for (Artikel artikel : artikels.values()) {

@@ -1,17 +1,22 @@
 package model;
 
-import database.ArtikelDbInMemory;
+import database.ArtikelTekstLoadSave;
+import database.TekstLoadSaveTemplate;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Winkel {
-    private HashMap<String, Artikel> artikels;
+    private Map<String, Artikel> artikels;
+    private TekstLoadSaveTemplate db;
 
     public Winkel () {
-        artikels = ArtikelDbInMemory.load("artikel.txt");
+        db = new ArtikelTekstLoadSave();
+        artikels = new HashMap<>();
+        artikels.putAll(db.load("artikel.txt"));
     }
 
-    public HashMap<String, Artikel> getArtikels() {
+    public Map<String, Artikel> getArtikels() {
         return artikels;
     }
 }
