@@ -1,6 +1,5 @@
 package database;
 
-import com.sun.deploy.net.socket.UnixDomainSocketException;
 import excel.ExcelPlugin;
 import jxl.read.biff.BiffException;
 import jxl.write.WriteException;
@@ -9,7 +8,6 @@ import model.ArtikelFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.security.DomainCombiner;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
