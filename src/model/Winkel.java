@@ -11,12 +11,16 @@ public class Winkel {
     private DatabaseContext db;
 
     public Winkel (DatabaseContext databaseContext) {
-        db = new DatabaseContext(new ArtikelTekstLoadSave());
+        setDb(databaseContext);
         artikels = new HashMap<>();
-        artikels.putAll(db.load("artikel.txt"));
+        artikels.putAll(db.getAll("artikel.txt"));
     }
 
     public Map<String, Artikel> getArtikels() {
         return artikels;
+    }
+
+    private void setDb(DatabaseContext db) {
+        this.db = db;
     }
 }

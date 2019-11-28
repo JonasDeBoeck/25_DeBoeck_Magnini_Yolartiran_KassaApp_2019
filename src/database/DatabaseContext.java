@@ -5,21 +5,21 @@ import model.Artikel;
 import java.util.Map;
 
 public class DatabaseContext {
-    private LoadSaveStrategy loadSaveStrategy;
+    private ArtikelDBStrategy artikelDBStrategy;
 
-    public DatabaseContext(LoadSaveStrategy loadSaveStrategy) {
-        setLoadSaveStrategy(loadSaveStrategy);
+    public DatabaseContext(ArtikelDBStrategy artikelDBStrategy) {
+        setArtikelDBStrategy(artikelDBStrategy);
     }
 
-    public void setLoadSaveStrategy(LoadSaveStrategy loadSaveStrategy) {
-        this.loadSaveStrategy = loadSaveStrategy;
+    public void setArtikelDBStrategy(ArtikelDBStrategy artikelDBStrategy) {
+        this.artikelDBStrategy = artikelDBStrategy;
     }
 
-    public Map<String, Artikel> load (String filename) {
-        return loadSaveStrategy.load(filename);
+    public Map<String, Artikel> getAll (String filename) {
+        return artikelDBStrategy.getAll(filename);
     }
 
-    public void save(String filename, Map<String, Artikel> artikels) {
-        loadSaveStrategy.save(filename, artikels);
+    public void saveAll (String filename, Map<String, Artikel> artikels) {
+        artikelDBStrategy.saveAll(filename, artikels);
     }
 }
