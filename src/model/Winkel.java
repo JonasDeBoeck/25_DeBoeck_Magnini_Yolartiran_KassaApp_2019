@@ -1,6 +1,5 @@
 package model;
 
-import database.ArtikelTekstLoadSave;
 import database.DatabaseContext;
 
 import java.util.HashMap;
@@ -13,7 +12,7 @@ public class Winkel {
     public Winkel (DatabaseContext databaseContext) {
         setDb(databaseContext);
         artikels = new HashMap<>();
-        artikels.putAll(db.getAll("artikel.txt"));
+        artikels.putAll(db.getAll("artikel.xls"));
     }
 
     public Map<String, Artikel> getArtikels() {

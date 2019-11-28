@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Artikel {
     private String artikelId, naam;
     private double prijs;
@@ -16,6 +19,16 @@ public class Artikel {
 
     public String toString() {
         return artikelId + "," + naam + "," + artikelCategorie.getArtikelCategorieAlsString() + "," + parsePrijs(prijs) + "," + aantalInStock + "\n";
+    }
+
+    public ArrayList<String> lijstArtikel() {
+        ArrayList<String> lijst = new ArrayList<>();
+        lijst.add(this.artikelId);
+        lijst.add(this.naam);
+        lijst.add(this.artikelCategorie.getArtikelCategorieAlsString());
+        lijst.add(Double.toString(this.prijs));
+        lijst.add(Integer.toString(this.aantalInStock));
+        return lijst;
     }
 
     private String parsePrijs(double prijs) {

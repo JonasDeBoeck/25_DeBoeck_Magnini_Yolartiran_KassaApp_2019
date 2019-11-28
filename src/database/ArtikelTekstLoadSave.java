@@ -33,7 +33,7 @@ public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate{
                 lijnScanner.close();
             }
         } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
+            throw new DatabaseException(e.getMessage());
         }
         return artikels;
     }
@@ -46,7 +46,7 @@ public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate{
                 writer.println(artikel.toString());
             }
         } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
+            throw new DatabaseException(e.getMessage());
         }
     }
 }
