@@ -1,7 +1,6 @@
 package view.panels;
 
-import database.ArtikelTekstLoadSave;
-import database.DatabaseContext;
+import controller.KassaController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -11,18 +10,16 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 import model.Artikel;
-import model.Winkel;
 
 import java.util.Map;
 
 
 public class ProductOverviewPane extends GridPane {
 	private TableView<Artikel> table;
-	private Winkel winkel;
+	private KassaController controller;
 	
-	
-	public ProductOverviewPane() {
-		winkel = new Winkel(new DatabaseContext(new ArtikelTekstLoadSave()));
+	public ProductOverviewPane(KassaController controller) {
+		setController(controller);
 
 		this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
@@ -69,12 +66,16 @@ public class ProductOverviewPane extends GridPane {
 			}
 		});
 
-		ObservableList<Map.Entry<String, Artikel>> items = FXCollections.observableArrayList(winkel.getArtikels().entrySet());
+		ObservableList<Map.Entry<String, Artikel>> items = FXCollections.observableArrayList(controller.getProducten().entrySet());
 		final TableView<Map.Entry<String, Artikel>> table = new TableView<>(items);
 
 		table.getColumns().setAll(artikelID, naam, prijs, aantalInStock, categorie);
 		table.getSortOrder().add(naam);
 		table.sort();
 		this.add(table, 0,1,1,2);
+	}
+
+	public void setController(KassaController controller) {
+		this.controller = controller;
 	}
 }
