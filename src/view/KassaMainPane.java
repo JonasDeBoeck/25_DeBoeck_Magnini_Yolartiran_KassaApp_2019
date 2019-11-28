@@ -1,10 +1,12 @@
-package view.panels;
+package view;
 
 
 import controller.KassaController;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
+import view.panels.InstellingenPane;
+import view.panels.ProductOverviewPane;
 
 public class KassaMainPane extends BorderPane {
     private KassaController controller;
@@ -15,11 +17,12 @@ public class KassaMainPane extends BorderPane {
         Tab kassaTab = new Tab("Kassa");
         ProductOverviewPane productOverviewPane = new ProductOverviewPane(this.controller);
         Tab artikelTab = new Tab("Artikelen",productOverviewPane);
-        Tab instellingTab = new Tab("Instellingen");
+        InstellingenPane instellingPane = new InstellingenPane(this.controller);
+        Tab instellingenTab = new Tab("Instellingen", instellingPane);
         Tab logTab = new Tab("Log");
         tabPane.getTabs().add(kassaTab);
         tabPane.getTabs().add(artikelTab);
-        tabPane.getTabs().add(instellingTab);
+        tabPane.getTabs().add(instellingenTab);
         tabPane.getTabs().add(logTab);
 	    this.setCenter(tabPane);
 	}

@@ -5,7 +5,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import view.panels.KassaMainPane;
 
 public class KassaView {
 	private Stage stage = new Stage();
