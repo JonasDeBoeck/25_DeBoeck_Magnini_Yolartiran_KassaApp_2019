@@ -13,11 +13,10 @@ import java.util.Scanner;
 public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate{
 
     @Override
-    public Map<String, Artikel> read(String fileNaam) {
+    public Map<String, Artikel> read(File toRead) {
         HashMap<String, Artikel> artikels = new HashMap<>();
-        File file = new File("src/bestanden/" + fileNaam);
         ArtikelFactory artikelFactory = ArtikelFactory.getInstance();
-        try (Scanner scanner = new Scanner(file)){
+        try (Scanner scanner = new Scanner(toRead)){
             while (scanner.hasNextLine()) {
                 Scanner lijnScanner = new Scanner(scanner.nextLine());
                 lijnScanner.useDelimiter(",");
@@ -39,9 +38,8 @@ public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate{
     }
 
     @Override
-    public void write(String fileNaam, Map<String, Artikel> artikels) {
-        File file = new File("src/bestanden/" + fileNaam);
-        try (PrintWriter writer = new PrintWriter(file);) {
+    public void write(File toWrite, Map<String, Artikel> artikels) {
+        try (PrintWriter writer = new PrintWriter(toWrite);) {
             for (Artikel artikel : artikels.values()) {
                 writer.println(artikel.toString());
             }
