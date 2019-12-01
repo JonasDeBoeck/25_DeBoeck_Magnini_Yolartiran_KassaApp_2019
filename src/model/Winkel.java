@@ -9,8 +9,8 @@ public class Winkel {
     private Map<String, Artikel> artikels;
     private DatabaseContext db;
 
-    public Winkel (DatabaseContext databaseContext) {
-        setDb(databaseContext);
+    public Winkel () {
+        setDb(new DatabaseContext());
         artikels = new HashMap<>();
         artikels.putAll(db.getAll("artikel.xls"));
     }

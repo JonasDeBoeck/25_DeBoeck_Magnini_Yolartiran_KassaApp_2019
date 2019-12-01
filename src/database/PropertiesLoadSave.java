@@ -13,9 +13,7 @@ public class PropertiesLoadSave {
         try {
             prop.load(new FileInputStream("src/bestanden/properties.properties"));
             db = prop.getProperty(property);
-            System.out.println(db);
         } catch (Exception e){
-            System.out.println(e.getMessage());
         }
         return db;
     }
@@ -27,7 +25,6 @@ public class PropertiesLoadSave {
        try{
            prop.store(new FileOutputStream("src/bestanden/properties.properties"), null);
        }catch (Exception e ){
-           System.out.println(e.getMessage());
        }
     }
 }

@@ -7,8 +7,11 @@ import java.util.Map;
 public class DatabaseContext {
     private ArtikelDBStrategy artikelDBStrategy;
 
-    public DatabaseContext(ArtikelDBStrategy artikelDBStrategy) {
-        setArtikelDBStrategy(artikelDBStrategy);
+    public DatabaseContext() {
+        String database = PropertiesLoadSave.load("DATABASE");
+        DatabaseFactory factory = DatabaseFactory.getInstance();
+        ArtikelDBStrategy db = factory.getDatabase(database);
+        setArtikelDBStrategy(db);
     }
 
     public void setArtikelDBStrategy(ArtikelDBStrategy artikelDBStrategy) {
