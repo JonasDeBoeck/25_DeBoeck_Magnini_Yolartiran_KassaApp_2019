@@ -4,6 +4,7 @@ import database.DatabaseContext;
 import database.PropertiesLoadSave;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Winkel {
@@ -22,6 +23,13 @@ public class Winkel {
 
     public Map<String, Artikel> getArtikels() {
         return artikels;
+    }
+
+    public void save(String filename, List<Artikel> cart) {
+        for (Artikel artikel : cart) {
+            artikels.get(artikel.getArtikelId()).setAantalInStock(artikel.getAantalInStock() - 1);
+        }
+        db.saveAll(filename, artikels);
     }
 
     private void setDb(DatabaseContext db) {

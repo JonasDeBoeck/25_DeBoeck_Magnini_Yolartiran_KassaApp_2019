@@ -4,6 +4,7 @@ import model.Artikel;
 import model.Winkel;
 import view.KassaView;
 
+import java.util.List;
 import java.util.Map;
 
 public class KassaController {
@@ -32,5 +33,13 @@ public class KassaController {
 
     private void setModel(Winkel model) {
         this.model = model;
+    }
+
+    public Artikel vindArtikel(String artikelId) {
+        return model.vindArtikel(artikelId);
+    }
+
+    public void save (String filename, List<Artikel> cart) {
+        model.save(filename, cart);
     }
 }

@@ -18,7 +18,7 @@ public class Artikel {
     }
 
     public String toString() {
-        return artikelId + "," + naam + "," + artikelCategorie.getArtikelCategorieAlsString() + "," + parsePrijs(prijs) + "," + aantalInStock + "\n";
+        return artikelId + "," + naam + "," + artikelCategorie.getArtikelCategorieAlsString() + "," + parsePrijs(prijs) + "," + aantalInStock;
     }
 
     public ArrayList<String> lijstArtikel() {
@@ -64,7 +64,7 @@ public class Artikel {
         this.prijs = prijs;
     }
 
-    private void setAantalInStock(int aantalInStock) {
+    public void setAantalInStock(int aantalInStock) {
         this.aantalInStock = aantalInStock;
     }
 
