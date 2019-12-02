@@ -31,6 +31,7 @@ public class Artikel {
         return lijst;
     }
 
+
     private String parsePrijs(double prijs) {
         return Double.toString(prijs).replace(",", ". ");
     }

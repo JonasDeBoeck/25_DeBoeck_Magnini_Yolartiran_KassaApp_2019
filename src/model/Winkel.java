@@ -16,6 +16,10 @@ public class Winkel {
         artikels.putAll(db.getAll("artikel." + PropertiesLoadSave.load("DATABASE")));
     }
 
+    public Artikel vindArtikel(String id){
+        return artikels.get(id);
+    }
+
     public Map<String, Artikel> getArtikels() {
         return artikels;
     }
