@@ -2,6 +2,7 @@ package view.panels;
 
 import controller.KassaController;
 import database.PropertiesLoadSave;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
@@ -36,7 +37,33 @@ public class KassaTabPane extends GridPane {
         TableColumn<Artikel, Double> prijs = new TableColumn<>("Prijs");
         prijs.setCellValueFactory(new PropertyValueFactory<Artikel, Double>("Prijs"));
 
-        tabel.getColumns().addAll(naam, prijs);
+        TableColumn<Artikel, Artikel> verwijder = new TableColumn<>("Delete");
+        verwijder.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+        verwijder.setCellFactory(
+                param -> new TableCell<Artikel, Artikel>() {
+                    private final Button deleteButton = new Button("Verwijder");
+
+                    @Override
+                    protected void updateItem(Artikel item, boolean empty) {
+                        super.updateItem(item, empty);
+
+                        if (item == null) {
+                            setGraphic(null);
+                            return;
+                        }
+
+                        setGraphic(deleteButton);
+                        deleteButton.setOnAction(
+                                event -> {
+                                    getTableView().getItems().remove(item);
+                                    updateTotaal();
+                                }
+                        );
+                    }
+                }
+        );
+
+        tabel.getColumns().addAll(naam, prijs, verwijder);
 
         this.add(invoer, 1,1);
         this.add(tabel, 1,3);
@@ -65,7 +92,6 @@ public class KassaTabPane extends GridPane {
             controller.save("artikel." + PropertiesLoadSave.load("DATABASE"), cart);
             cart.clear();
             totaal.setVisible(false);
-            //TODO Stock update
         });
     }
 
