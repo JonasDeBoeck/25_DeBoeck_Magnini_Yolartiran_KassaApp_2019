@@ -36,6 +36,7 @@ public class ExcelAdapter implements LoadSaveStrategy {
             fout.setTitle("Fout bij het inlezen van excel bestand");
             fout.setHeaderText("Het opgegeven excel bestand kan niet worden gevonden");
             fout.setContentText(e.getMessage());
+            fout.showAndWait();
         }
         return artikels;
     }
@@ -53,6 +54,7 @@ public class ExcelAdapter implements LoadSaveStrategy {
             fout.setTitle("Fout bij het wegschrijven naar excel bestand");
             fout.setHeaderText("Het opgegeven excel bestand kan niet worden gevonden");
             fout.setContentText(e.getMessage());
+            fout.showAndWait();
         }
     }
 

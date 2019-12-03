@@ -5,10 +5,7 @@ import database.PropertiesLoadSave;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
 import java.util.Properties;
@@ -59,6 +56,11 @@ public class InstellingenPane extends GridPane {
         saveKnop.setOnAction(onClick -> {
             String database = comboBox.getValue().toString();
             PropertiesLoadSave.save(database, "DATABASE");
+            Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
+            confirmation.setTitle("INFO");
+            confirmation.setHeaderText("Wijzigingen opgeslagen");
+            confirmation.setContentText("Wijzigingen opgeslagen, herstart het programma voor de aanpassingen.");
+            confirmation.showAndWait();
         });
 
     }

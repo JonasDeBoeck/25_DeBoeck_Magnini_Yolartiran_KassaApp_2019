@@ -20,6 +20,7 @@ public class PropertiesLoadSave {
             fout.setTitle("Fout bij het inlezen van properties");
             fout.setHeaderText("Het properties bestand kan niet worden ingelezen");
             fout.setContentText(e.getMessage());
+            fout.showAndWait();
         }
         return db;
     }
@@ -35,6 +36,7 @@ public class PropertiesLoadSave {
            fout.setTitle("Fout bij het wegschrijven naar properties");
            fout.setHeaderText("Er kan niet naar het properties bestand worden geschreven");
            fout.setContentText(e.getMessage());
+           fout.showAndWait();
        }
     }
 }

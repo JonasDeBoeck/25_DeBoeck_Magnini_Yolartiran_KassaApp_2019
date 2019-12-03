@@ -37,6 +37,7 @@ public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate{
             fout.setTitle("Fout bij het inlezen");
             fout.setHeaderText("Het opgegeven bestand kan niet worden gevonden");
             fout.setContentText(e.getMessage());
+            fout.showAndWait();
         }
         return artikels;
     }
@@ -52,6 +53,7 @@ public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate{
             fout.setTitle("Fout bij het wegschrijven");
             fout.setHeaderText("Het opgegeven bestand kan niet worden gevonden");
             fout.setContentText(e.getMessage());
+            fout.showAndWait();
         }
     }
 }
