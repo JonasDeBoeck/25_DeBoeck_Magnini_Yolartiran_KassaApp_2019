@@ -49,8 +49,8 @@ public class KassaTabPane extends GridPane {
                 if(art == null){
                     Alert fout = new Alert(Alert.AlertType.ERROR);
                     fout.setTitle("FOUT");
-                    fout.setHeaderText("U heeft geen zoekopdracht opgegeven");
-                    fout.setContentText("Gelieve een zoekopdracht in te geven");
+                    fout.setHeaderText("Artikel niet gevonden");
+                    fout.setContentText("Het artikel dat u heeft opgegeven kan niet worden gevonden");
                     fout.showAndWait();
                 } else {
                     cart.add(art);

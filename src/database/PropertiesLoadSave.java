@@ -1,5 +1,7 @@
 package database;
 
+import javafx.scene.control.Alert;
+
 import java.io.*;
 
 import java.util.Properties;
@@ -14,7 +16,10 @@ public class PropertiesLoadSave {
             prop.load(new FileInputStream("src/bestanden/properties.properties"));
             db = prop.getProperty(property);
         } catch (Exception e){
-
+            Alert fout = new Alert(Alert.AlertType.ERROR);
+            fout.setTitle("Fout bij het inlezen van properties");
+            fout.setHeaderText("Het properties bestand kan niet worden ingelezen");
+            fout.setContentText(e.getMessage());
         }
         return db;
     }
@@ -26,7 +31,10 @@ public class PropertiesLoadSave {
        try{
            prop.store(new FileOutputStream("src/bestanden/properties.properties"), null);
        }catch (Exception e ){
-
+           Alert fout = new Alert(Alert.AlertType.ERROR);
+           fout.setTitle("Fout bij het wegschrijven naar properties");
+           fout.setHeaderText("Er kan niet naar het properties bestand worden geschreven");
+           fout.setContentText(e.getMessage());
        }
     }
 }

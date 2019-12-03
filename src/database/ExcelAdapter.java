@@ -1,6 +1,7 @@
 package database;
 
 import excel.ExcelPlugin;
+import javafx.scene.control.Alert;
 import jxl.read.biff.BiffException;
 import jxl.write.WriteException;
 import model.Artikel;
@@ -23,17 +24,20 @@ public class ExcelAdapter implements LoadSaveStrategy {
     @Override
     public Map<String, Artikel> load(String filename) {
         ArtikelFactory factory = ArtikelFactory.getInstance();
+        Map<String, Artikel> artikels = new HashMap<>();
         try {
             List<ArrayList<String>> lijst = this.excelPlugin.read(convertToFileObject(filename));
-            Map<String, Artikel> artikels = new HashMap<>();
             for (List<String> artikelLijst : lijst) {
                 Artikel artikel = factory.createArtikel(artikelLijst.get(0), artikelLijst.get(1), convertToDouble(artikelLijst.get(3)), convertToInt(artikelLijst.get(4)), artikelLijst.get(2));
                 artikels.put(artikel.getArtikelId(), artikel);
             }
-            return artikels;
         } catch (BiffException | IOException e) {
-            throw new DatabaseException(e.getMessage());
+            Alert fout = new Alert(Alert.AlertType.ERROR);
+            fout.setTitle("Fout bij het inlezen van excel bestand");
+            fout.setHeaderText("Het opgegeven excel bestand kan niet worden gevonden");
+            fout.setContentText(e.getMessage());
         }
+        return artikels;
     }
 
     @Override
@@ -45,7 +49,10 @@ public class ExcelAdapter implements LoadSaveStrategy {
             }
             this.excelPlugin.write(convertToFileObject(filename), artikelsLijst);
         } catch (BiffException | IOException | WriteException e) {
-            throw new DatabaseException(e.getMessage());
+            Alert fout = new Alert(Alert.AlertType.ERROR);
+            fout.setTitle("Fout bij het wegschrijven naar excel bestand");
+            fout.setHeaderText("Het opgegeven excel bestand kan niet worden gevonden");
+            fout.setContentText(e.getMessage());
         }
     }
 

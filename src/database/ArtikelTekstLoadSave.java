@@ -1,5 +1,6 @@
 package database;
 
+import javafx.scene.control.Alert;
 import model.Artikel;
 import model.ArtikelFactory;
 
@@ -32,7 +33,10 @@ public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate{
                 lijnScanner.close();
             }
         } catch (FileNotFoundException e) {
-            throw new DatabaseException(e.getMessage());
+            Alert fout = new Alert(Alert.AlertType.ERROR);
+            fout.setTitle("Fout bij het inlezen");
+            fout.setHeaderText("Het opgegeven bestand kan niet worden gevonden");
+            fout.setContentText(e.getMessage());
         }
         return artikels;
     }
@@ -44,7 +48,10 @@ public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate{
                 writer.println(artikel.toString());
             }
         } catch (FileNotFoundException e) {
-            throw new DatabaseException(e.getMessage());
+            Alert fout = new Alert(Alert.AlertType.ERROR);
+            fout.setTitle("Fout bij het wegschrijven");
+            fout.setHeaderText("Het opgegeven bestand kan niet worden gevonden");
+            fout.setContentText(e.getMessage());
         }
     }
 }
