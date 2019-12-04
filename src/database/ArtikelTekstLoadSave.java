@@ -4,9 +4,8 @@ import javafx.scene.control.Alert;
 import model.Artikel;
 import model.ArtikelFactory;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -17,7 +16,7 @@ public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate{
     public Map<String, Artikel> read(File toRead) {
         HashMap<String, Artikel> artikels = new HashMap<>();
         ArtikelFactory artikelFactory = ArtikelFactory.getInstance();
-        try (Scanner scanner = new Scanner(toRead)){
+        try (Scanner scanner = new Scanner(toRead, "UTF-8")){
             while (scanner.hasNextLine()) {
                 Scanner lijnScanner = new Scanner(scanner.nextLine());
                 lijnScanner.useDelimiter(",");
@@ -44,11 +43,11 @@ public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate{
 
     @Override
     public void write(File toWrite, Map<String, Artikel> artikels) {
-        try (PrintWriter writer = new PrintWriter(toWrite)) {
+        try (Writer w = new OutputStreamWriter(new FileOutputStream(toWrite), StandardCharsets.UTF_8); PrintWriter writer = new PrintWriter(w)) {
             for (Artikel artikel : artikels.values()) {
                 writer.println(artikel.toString());
             }
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             Alert fout = new Alert(Alert.AlertType.ERROR);
             fout.setTitle("Fout bij het wegschrijven");
             fout.setHeaderText("Het opgegeven bestand kan niet worden gevonden");
