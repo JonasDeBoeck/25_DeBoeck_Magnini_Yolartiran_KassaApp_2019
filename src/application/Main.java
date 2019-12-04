@@ -1,6 +1,7 @@
 package application;
 	
 import controller.KassaController;
+import controller.KlantController;
 import database.DatabaseContext;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -12,9 +13,11 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		Winkel model = new Winkel();
-		KassaController controller = new KassaController(model);
-		KassaView kassaView = new KassaView(controller);
-		KlantView klantView = new KlantView();
+		KassaController kassaController = new KassaController(model);
+		KlantController klantController = new KlantController(model);
+		kassaController.registerObserver(klantController);
+		new KassaView(kassaController);
+		new KlantView(klantController);
 	}
 	
 	public static void main(String[] args) {

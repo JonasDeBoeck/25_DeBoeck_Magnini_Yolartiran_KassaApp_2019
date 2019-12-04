@@ -26,8 +26,8 @@ public class KassaTabPane extends GridPane {
         totaal = new Label();
         verkoop = new Button("BETAAL");
 
-        TableColumn<Artikel, Integer> naam = new TableColumn<>("Artikel");
-        naam.setCellValueFactory(new PropertyValueFactory<Artikel, Integer>("Naam"));
+        TableColumn<Artikel, String> naam = new TableColumn<>("Artikel");
+        naam.setCellValueFactory(new PropertyValueFactory<Artikel, String>("Naam"));
 
         TableColumn<Artikel, Double> prijs = new TableColumn<>("Prijs");
         prijs.setCellValueFactory(new PropertyValueFactory<Artikel, Double>("Prijs"));
@@ -52,6 +52,7 @@ public class KassaTabPane extends GridPane {
                                 event -> {
                                     controller.deleteFromCart(item);
                                     tabel.setItems(controller.getWinkelWagentje());
+                                    controller.notifyObservers();
                                     updateTotaal();
                                 }
                         );
@@ -78,6 +79,7 @@ public class KassaTabPane extends GridPane {
                 } else {
                     controller.addToCart(art);
                     tabel.setItems(controller.getWinkelWagentje());
+                    controller.notifyObservers();
                     updateTotaal();
                 }
                 invoer.clear();
@@ -87,6 +89,7 @@ public class KassaTabPane extends GridPane {
         verkoop.setOnAction(event -> {
             controller.save("artikel." + PropertiesLoadSave.load("DATABASE"), controller.getWinkelWagentje());
             controller.clearCart();
+            controller.notifyObservers();
             totaal.setVisible(false);
         });
     }

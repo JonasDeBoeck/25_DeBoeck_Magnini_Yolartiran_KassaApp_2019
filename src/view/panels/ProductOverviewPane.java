@@ -15,7 +15,7 @@ import java.util.Map;
 
 
 public class ProductOverviewPane extends GridPane {
-	//TODO Code vereenvoudigen
+	//TODO Code vereenvoudigen + interactief veranderen na betaling
 	private TableView<Artikel> table;
 	private KassaController controller;
 	

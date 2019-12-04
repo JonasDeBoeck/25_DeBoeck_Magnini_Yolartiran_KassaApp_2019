@@ -7,23 +7,22 @@ import model.Winkel;
 import model.Winkelwagentje;
 import view.KassaView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class KassaController {
+public class KassaController implements Subject{
     private KassaView view;
     private Winkel model;
+    private List<Observer>observers;
 
     public KassaController(Winkel model) {
         setModel(model);
+        this.observers = new ArrayList<>();
     }
 
     public Map<String, Artikel> getProducten () {
         return model.getArtikels();
-    }
-
-    public KassaView getView() {
-        return view;
     }
 
     public void setView(KassaView view) {
@@ -70,5 +69,17 @@ public class KassaController {
 
     public void deleteFromCart(Artikel artikel) {
         model.deleteFromCart(artikel);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update(getWinkelWagentje(), Double.toString(updateTotaalPrijs()));
+        }
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        this.observers.add(observer);
     }
 }

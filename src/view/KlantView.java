@@ -1,21 +1,41 @@
 package view;
 
+import controller.KlantController;
+import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.stage.Stage;	
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+import model.Artikel;
 
-public class KlantView {
-	private Stage stage = new Stage();		
+public class KlantView extends GridPane{
+	private Stage stage = new Stage();
+	private KlantController controller;
 		
-	public KlantView(){			
+	public KlantView(KlantController controller){
+		setController(controller);
+
 		stage.setTitle("KLANT VIEW");
-		stage.setResizable(false);		
+		stage.setResizable(false);
 		stage.setX(775);
 		stage.setY(20);
 		Group root = new Group();
-		Scene scene = new Scene(root, 500, 500);			
+		Scene scene = new Scene(root, 500, 500);
+		GridPane gridPane = new KlantMainPane(this.controller);
+		gridPane.prefHeightProperty().bind(scene.heightProperty());
+		gridPane.prefWidthProperty().bind(scene.widthProperty());
+		root.getChildren().add(gridPane);
 		stage.setScene(scene);
-		stage.sizeToScene();			
+		stage.sizeToScene();
 		stage.show();		
+	}
+
+	private void setController(KlantController controller) {
+		this.controller = controller;
 	}
 }
