@@ -90,6 +90,7 @@ public class KassaTabPane extends GridPane {
             controller.save("artikel." + PropertiesLoadSave.load("DATABASE"), controller.getWinkelWagentje());
             controller.clearCart();
             controller.notifyObservers();
+            tabel.setItems(controller.getWinkelWagentje());
             totaal.setVisible(false);
         });
     }
