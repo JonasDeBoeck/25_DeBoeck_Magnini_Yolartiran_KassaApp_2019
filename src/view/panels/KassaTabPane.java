@@ -3,8 +3,6 @@ package view.panels;
 import controller.KassaController;
 import database.PropertiesLoadSave;
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
@@ -18,18 +16,15 @@ public class KassaTabPane extends GridPane {
     private KassaController controller;
     private Label totaal;
     private TextField invoer;
-    private ObservableList<Artikel> cart;
     private Button verkoop;
 
     public KassaTabPane(KassaController controller) {
         tabel = new TableView<>();
         setController(controller);
         invoer = new TextField();
-        cart = FXCollections.observableArrayList();
+
         totaal = new Label();
         verkoop = new Button("BETAAL");
-
-        tabel.setItems(cart);
 
         TableColumn<Artikel, Integer> naam = new TableColumn<>("Artikel");
         naam.setCellValueFactory(new PropertyValueFactory<Artikel, Integer>("Naam"));
@@ -55,7 +50,8 @@ public class KassaTabPane extends GridPane {
                         setGraphic(deleteButton);
                         deleteButton.setOnAction(
                                 event -> {
-                                    getTableView().getItems().remove(item);
+                                    controller.deleteFromCart(item);
+                                    tabel.setItems(controller.getWinkelWagentje());
                                     updateTotaal();
                                 }
                         );
@@ -80,8 +76,8 @@ public class KassaTabPane extends GridPane {
                     fout.setContentText("Het artikel dat u heeft opgegeven kan niet worden gevonden");
                     fout.showAndWait();
                 } else {
-                    cart.add(art);
-                    tabel.setItems(cart);
+                    controller.addToCart(art);
+                    tabel.setItems(controller.getWinkelWagentje());
                     updateTotaal();
                 }
                 invoer.clear();
@@ -89,20 +85,16 @@ public class KassaTabPane extends GridPane {
         });
 
         verkoop.setOnAction(event -> {
-            controller.save("artikel." + PropertiesLoadSave.load("DATABASE"), cart);
-            cart.clear();
+            controller.save("artikel." + PropertiesLoadSave.load("DATABASE"), controller.getWinkelWagentje());
+            controller.clearCart();
             totaal.setVisible(false);
         });
     }
 
 
     private void updateTotaal(){
-        double totaal1 = 0;
-        for(Artikel a : cart){
-            totaal1 += a.getPrijs();
-        }
         totaal.setVisible(true);
-        totaal.setText("totaal: " + totaal1);
+        totaal.setText("totaal: " + controller.updateTotaalPrijs());
     }
 
     private void setController(KassaController controller) {

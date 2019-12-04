@@ -9,11 +9,13 @@ import java.util.Map;
 
 public class Winkel {
     private Map<String, Artikel> artikels;
+    private Winkelwagentje winkelwagentje;
     private DatabaseContext db;
 
     public Winkel () {
         setDb(new DatabaseContext());
-        artikels = new HashMap<>();
+        this.artikels = new HashMap<>();
+        this.winkelwagentje = new Winkelwagentje();
         artikels.putAll(db.getAll("artikel." + PropertiesLoadSave.load("DATABASE")));
     }
 
@@ -34,5 +36,21 @@ public class Winkel {
 
     private void setDb(DatabaseContext db) {
         this.db = db;
+    }
+
+    public Winkelwagentje getWinkelwagentje() {
+        return winkelwagentje;
+    }
+
+    public void addToCart (Artikel artikel) {
+        this.winkelwagentje.addArtikel(artikel);
+    }
+
+    public void clearCart () {
+        this.winkelwagentje.maakLeeg();
+    }
+
+    public void deleteFromCart(Artikel artikel) {
+        this.winkelwagentje.removeArtikel(artikel);
     }
 }

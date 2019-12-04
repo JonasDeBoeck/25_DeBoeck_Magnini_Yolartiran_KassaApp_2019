@@ -15,6 +15,7 @@ import java.util.Map;
 
 
 public class ProductOverviewPane extends GridPane {
+	//TODO Code vereenvoudigen
 	private TableView<Artikel> table;
 	private KassaController controller;
 	
