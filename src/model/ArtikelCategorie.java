@@ -14,7 +14,7 @@ public enum ArtikelCategorie {
         return artikelCategorieAlsString;
     }
 
-    public void setArtikelCategorieAlsString(String artikelCategorieAlsString) {
+    private void setArtikelCategorieAlsString(String artikelCategorieAlsString) {
         this.artikelCategorieAlsString = artikelCategorieAlsString;
     }
 }

@@ -44,7 +44,7 @@ public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate{
 
     @Override
     public void write(File toWrite, Map<String, Artikel> artikels) {
-        try (PrintWriter writer = new PrintWriter(toWrite);) {
+        try (PrintWriter writer = new PrintWriter(toWrite)) {
             for (Artikel artikel : artikels.values()) {
                 writer.println(artikel.toString());
             }
