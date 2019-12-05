@@ -15,21 +15,19 @@ public class DatabaseFactory {
     }
 
     public ArtikelDBStrategy getDatabase(String type) {
-        //TODO: reflection
-        /*String db;
+        String db;
         switch (type) {
             default:
                 db = "ArtikelDBInMemory";
         }
         ArtikelDBStrategy database = null;
         try {
-            Class databaseClass = Class.forName("src.database." + db);
-            Object databaseObject = databaseClass.getConstructor().newInstance();
+            Class databaseClass = Class.forName("database." + db);
+            Object databaseObject = databaseClass.newInstance();
             database = (ArtikelDBStrategy) databaseObject;
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             throw new DatabaseException(e.getMessage());
         }
-        return database;*/
-        return new ArtikelDBInMemory();
+        return database;
     }
 }

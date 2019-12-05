@@ -15,30 +15,22 @@ public class LoadSaveFactory {
     }
 
     public LoadSaveStrategy getStrategy(String type) {
-        //TODO: reflection
-        /*String strategy = "";
+        String strategy = "";
         switch (type) {
             case "xls":
                 strategy = "ExcelAdapter";
+                break;
             case "txt":
                 strategy = "ArtikelTekstLoadSave";
         }
         LoadSaveStrategy loadSave = null;
         try {
-            Class loadSaveClass = Class.forName("src/database/" + strategy);
-            Object loadSaveObject = loadSaveClass.getConstructor().newInstance();
+            Class loadSaveClass = Class.forName("database." + strategy);
+            Object loadSaveObject = loadSaveClass.newInstance();
             loadSave = (LoadSaveStrategy) loadSaveObject;
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException  e) {
             throw new DatabaseException();
         }
-        return loadSave;*/
-        switch (type) {
-            case "xls":
-                return new ExcelAdapter();
-            case "txt":
-                return new ArtikelTekstLoadSave();
-            default:
-                return new ArtikelTekstLoadSave();
-        }
+        return loadSave;
     }
 }
