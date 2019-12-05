@@ -9,13 +9,14 @@ import java.util.Map;
 
 public class Winkel {
     private Map<String, Artikel> artikels;
-    private Winkelwagentje winkelwagentje;
+    private Winkelwagentje winkelwagentje, onHoldWinkelwagentje;
     private DatabaseContext db;
 
     public Winkel () {
         setDb(new DatabaseContext());
         this.artikels = new HashMap<>();
         this.winkelwagentje = new Winkelwagentje();
+        this.onHoldWinkelwagentje = new Winkelwagentje();
         artikels.putAll(db.getAll("artikel." + PropertiesLoadSave.load("DATABASE")));
     }
 
@@ -52,5 +53,23 @@ public class Winkel {
 
     public void deleteFromCart(Artikel artikel) {
         this.winkelwagentje.removeArtikel(artikel);
+    }
+
+    public void setOnHold(){
+        onHoldWinkelwagentje.getArtikels().addAll(this.winkelwagentje.getArtikels());
+        clearCart();
+    }
+
+    public void setOffHold(){
+        winkelwagentje.getArtikels().addAll(this.onHoldWinkelwagentje.getArtikels());
+        this.onHoldWinkelwagentje.getArtikels().clear();
+    }
+
+    public Winkelwagentje getOnHoldWinkelwagentje() {
+        return onHoldWinkelwagentje;
+    }
+
+    public void clearOnHold(){
+        this.onHoldWinkelwagentje.getArtikels().clear();
     }
 }

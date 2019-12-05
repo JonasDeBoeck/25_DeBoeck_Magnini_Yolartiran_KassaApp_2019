@@ -15,10 +15,12 @@ public class KassaController implements Subject{
     private KassaView view;
     private Winkel model;
     private List<Observer>observers;
+    private int counter;
 
     public KassaController(Winkel model) {
         setModel(model);
         this.observers = new ArrayList<>();
+        counter = 0;
     }
 
     public Map<String, Artikel> getProducten () {
@@ -50,6 +52,12 @@ public class KassaController implements Subject{
     }
 
     public void clearCart () {
+        if (!model.getOnHoldWinkelwagentje().getArtikels().isEmpty()){
+            counter++;
+            if (counter > 3){
+                model.clearOnHold();
+            }
+        }
         model.clearCart();
     }
 
@@ -81,5 +89,19 @@ public class KassaController implements Subject{
     @Override
     public void registerObserver(Observer observer) {
         this.observers.add(observer);
+    }
+
+    public void zetOnHold(){
+        counter = 0;
+        model.setOnHold();
+    }
+
+    public void zetOffHold(){
+        counter = 0;
+        model.setOffHold();
+    }
+
+    public boolean legeOnHold(){
+        return model.getOnHoldWinkelwagentje().getArtikels().isEmpty();
     }
 }

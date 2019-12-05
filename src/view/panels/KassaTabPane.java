@@ -16,7 +16,7 @@ public class KassaTabPane extends GridPane {
     private KassaController controller;
     private Label totaal;
     private TextField invoer;
-    private Button verkoop;
+    private Button verkoop, onHold, offHold;
 
     public KassaTabPane(KassaController controller) {
         tabel = new TableView<>();
@@ -25,6 +25,8 @@ public class KassaTabPane extends GridPane {
 
         totaal = new Label();
         verkoop = new Button("BETAAL");
+        onHold = new Button("On hold");
+        offHold = new Button("actief");
 
         TableColumn<Artikel, String> naam = new TableColumn<>("Artikel");
         naam.setCellValueFactory(new PropertyValueFactory<Artikel, String>("Naam"));
@@ -66,6 +68,10 @@ public class KassaTabPane extends GridPane {
         this.add(tabel, 1,3);
         this.add(totaal, 1,4);
         this.add(verkoop, 1,5);
+        this.add(onHold,1,7);
+        this.add(offHold, 1,8);
+        onHold.setVisible(false);
+
 
         invoer.setOnKeyReleased(event -> {
             if (event.getCode() == KeyCode.ENTER){
@@ -81,10 +87,13 @@ public class KassaTabPane extends GridPane {
                     tabel.setItems(controller.getWinkelWagentje());
                     controller.notifyObservers();
                     updateTotaal();
+                    onHold.setVisible(controller.legeOnHold());
+                    offHold.setVisible(false);
                 }
                 invoer.clear();
             }
         });
+
 
         verkoop.setOnAction(event -> {
             controller.save("artikel." + PropertiesLoadSave.load("DATABASE"), controller.getWinkelWagentje());
@@ -92,7 +101,35 @@ public class KassaTabPane extends GridPane {
             controller.notifyObservers();
             tabel.setItems(controller.getWinkelWagentje());
             totaal.setVisible(false);
+            onHold.setVisible(false);
+            offHold.setVisible(true);
         });
+
+        onHold.setOnAction(event ->{
+            controller.zetOnHold();
+            controller.notifyObservers();
+            onHold.setVisible(controller.legeOnHold());
+            tabel.setItems(controller.getWinkelWagentje());
+            totaal.setVisible(false);
+        });
+
+        offHold.setOnAction(event ->{
+            if (controller.legeOnHold()) {
+                Alert fout = new Alert(Alert.AlertType.ERROR);
+                fout.setTitle("FOUT");
+                fout.setHeaderText("Lege on hold winkelwagen");
+                fout.setContentText("Er is momenteel geen lege on hold");
+                fout.showAndWait();
+            } else {
+                controller.zetOffHold();
+                controller.notifyObservers();
+                offHold.setVisible(false);
+                onHold.setVisible(controller.legeOnHold());
+                tabel.setItems(controller.getWinkelWagentje());
+                updateTotaal();
+            }
+        });
+
     }
 
 
