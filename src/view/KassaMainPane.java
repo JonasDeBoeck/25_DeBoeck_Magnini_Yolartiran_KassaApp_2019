@@ -5,9 +5,10 @@ import controller.KassaController;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
-import view.panels.InstellingenPane;
+import view.panels.instellingen.InstellingenDatabasePane;
 import view.panels.KassaTabPane;
 import view.panels.ProductOverviewPane;
+import view.panels.instellingen.InstellingenMainPane;
 
 public class KassaMainPane extends BorderPane {
     private KassaController controller;
@@ -19,7 +20,7 @@ public class KassaMainPane extends BorderPane {
         Tab kassaTab = new Tab("Kassa", tabKassa);
         ProductOverviewPane productOverviewPane = new ProductOverviewPane(this.controller);
         Tab artikelTab = new Tab("Artikelen",productOverviewPane);
-        InstellingenPane instellingPane = new InstellingenPane(this.controller);
+        InstellingenMainPane instellingPane = new InstellingenMainPane(this.controller);
         Tab instellingenTab = new Tab("Instellingen", instellingPane);
         Tab logTab = new Tab("Log");
         tabPane.getTabs().add(kassaTab);

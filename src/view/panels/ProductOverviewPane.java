@@ -22,9 +22,9 @@ public class ProductOverviewPane extends GridPane {
 	public ProductOverviewPane(KassaController controller) {
 		setController(controller);
 
-		this.setPadding(new Insets(5, 5, 5, 5));
-        this.setVgap(5);
-        this.setHgap(5);
+		this.setPadding(new Insets(10,10,10,10));
+		this.setVgap(8);
+		this.setHgap(10);
 		this.add(new Label("Products:"), 0, 0, 1, 1);
 
 		TableColumn<Map.Entry<String, Artikel>, String> artikelID = new TableColumn<>("Artikel ID");
@@ -74,6 +74,7 @@ public class ProductOverviewPane extends GridPane {
 		table.getSortOrder().add(naam);
 		table.sort();
 		this.add(table, 0,1,1,2);
+
 	}
 
 	public void setController(KassaController controller) {

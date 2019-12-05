@@ -26,16 +26,25 @@ public class PropertiesLoadSave {
     }
 
     public static void save(String keuze, String property) {
-       Properties prop = new Properties();
-       prop.setProperty(property, keuze);
-       try (FileOutputStream fileOutputStream = new FileOutputStream("src/bestanden/properties.properties")) {
-           prop.store(fileOutputStream, null);
-       }catch (Exception e ) {
-           Alert fout = new Alert(Alert.AlertType.ERROR);
-           fout.setTitle("Fout bij het wegschrijven naar properties");
-           fout.setHeaderText("Er kan niet naar het properties bestand worden geschreven");
-           fout.setContentText(e.getMessage());
-           fout.showAndWait();
-       }
+
+        try {
+            FileInputStream a =new FileInputStream("src/bestanden/properties.properties");
+            Properties prop = new Properties();
+            prop.load(a);
+            a.close();
+
+            FileOutputStream fileOutputStream = new FileOutputStream("src/bestanden/properties.properties");
+            prop.setProperty(property, keuze);
+            prop.store(fileOutputStream, null);
+            fileOutputStream.close();
+
+        }catch (Exception e ) {
+            Alert fout = new Alert(Alert.AlertType.ERROR);
+            fout.setTitle("Fout bij het wegschrijven naar properties");
+            fout.setHeaderText("Er kan niet naar het properties bestand worden geschreven");
+            fout.setContentText(e.getMessage());
+            fout.showAndWait();
+        }
     }
+
 }

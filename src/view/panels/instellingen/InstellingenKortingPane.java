@@ -1,4 +1,4 @@
-package view.panels;
+package view.panels.instellingen;
 
 import controller.KassaController;
 import database.PropertiesLoadSave;
@@ -6,28 +6,19 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import model.ArtikelCategorie;
 
-import java.io.File;
-import java.util.Properties;
-import java.util.concurrent.CompletableFuture;
+import java.awt.*;
 
-public class InstellingenPane extends GridPane {
+public class InstellingenKortingPane extends GridPane {
 
-    private RadioButton SQL;
-    private RadioButton file;
-    private RadioButton groepKorting;
-    private RadioButton grensKorting;
-    private RadioButton duursteKorting;
-    private RadioButton geenKorting;
-    private Label getalKorting = new Label("Hoe wilt u de korting berekenen?");
     private KassaController controller;
-    private ComboBox comboBox;
-    private Label database = new Label("Database Instellingen:");
+
     private Label korting = new Label("Korting Instellingen:");
     private Label getalLabel = new Label("Kies hoevel korting u exact wenst te geven.");
     private Slider sliderGetal = new Slider();
@@ -35,36 +26,22 @@ public class InstellingenPane extends GridPane {
     private Button saveKorting;
     private ComboBox categorieKeuze;
     private TextField invoerGrens;
-
     private ObservableList<String> categorien;
-
-    private ObservableList<String> optionsDB = FXCollections.observableArrayList(
-            "txt",
-            "xls"
-    );
-
+    private RadioButton groepKorting;
+    private RadioButton grensKorting;
+    private RadioButton duursteKorting;
+    private RadioButton geenKorting;
+    private Label getalKorting = new Label("Hoe wilt u de korting berekenen?");
     private ComboBox comboBoxKortingenSoorten;
     private ObservableList<String> optieKorting = FXCollections.observableArrayList(
             "Percentage",
             "Euro"
     );
 
-    private Button saveKnop;
-
-
-    public InstellingenPane(KassaController controller){
+    public InstellingenKortingPane(KassaController controller){
         setController(controller);
 
-        //initialisaties van DB instellingen
-        ToggleGroup groep = new ToggleGroup();
-        SQL = new RadioButton("Sql");
-        SQL.setToggleGroup(groep);
-        file = new RadioButton("db in memory");
-        file.setToggleGroup(groep);
-        comboBox = new ComboBox<>(optionsDB);
-
-
-        //initialisaties van Korting instellingen
+        //initialisaties
         ToggleGroup kortingGroep = new ToggleGroup();
         comboBoxKortingenSoorten = new ComboBox<>(optieKorting);
         groepKorting = new RadioButton("Groeps Korting");
@@ -85,42 +62,30 @@ public class InstellingenPane extends GridPane {
         invoerGrens = new TextField("Vul hier de drempel in");
 
 
-        //SAVE KNOP
-        saveKnop = new Button("Save DB ");
 
-        //Scherm indeling ALGEMEEN
-        this.setPadding(new Insets(5,5,5,5));
-        this.setHgap(5);
-        this.setVgap(5);
+        this.add(korting, 1, 1);
+        this.add(groepKorting,1,2);
+        this.add(categorieKeuze, 2,2);
+        this.add(grensKorting,1,3);
+        this.add(duursteKorting,1,4);
+        this.add(geenKorting, 1,5);
+        this.add(getalKorting,1,7);
+        this.add(comboBoxKortingenSoorten, 1,8);
+        this.add(getalLabel, 1,10);
+        this.add(sliderGetal,1,11);
+        this.add(getal, 2,11);
+        this.add(saveKorting, 1,13);
+        this.add(invoerGrens, 2,3);
 
-        /*Lay-out voor DATABASE instellingen*/
-        this.add(database, 1,1);
-        this.add(SQL, 1 , 2);
-        this.add(file, 1, 3);
-        this.add(comboBox, 1,4);
+        this.setPadding(new Insets(10,10,10,10));
+        this.setVgap(8);
+        this.setHgap(10);
 
-        //SAVE KNOP VOOR ALLE INSTELLINGEN
-        this.add(saveKnop,1,6);
-
-        /*Lay-out voor KORTING instellingen*/
-        this.add(korting, 3, 1);
-        this.add(groepKorting,3,2);
-        this.add(categorieKeuze, 4,2);
-        this.add(grensKorting,3,3);
-        this.add(duursteKorting,3,4);
-        this.add(geenKorting, 3,5);
-        this.add(getalKorting,3,6);
-        this.add(comboBoxKortingenSoorten, 3,7);
-        this.add(getalLabel, 3,8);
-        this.add(sliderGetal,3,9);
-        this.add(getal, 4,9);
-        this.add(saveKorting, 3,10);
-        this.add(invoerGrens, 4,3);
 
         categorieKeuze.setVisible(false);
         invoerGrens.setVisible(false);
 
-        comboBox.setVisible(false);
+
 
         sliderGetal.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov,
@@ -177,26 +142,39 @@ public class InstellingenPane extends GridPane {
             invoerGrens.setVisible(false);
         });
 
-        SQL.setOnAction(onClick -> {
-            comboBox.setVisible(false);
+        saveKorting.setOnAction(event -> {
+            if (kortingGroep.getSelectedToggle() == groepKorting){
+                PropertiesLoadSave.save("", "DREMPEL");
+                PropertiesLoadSave.save(comboBoxKortingenSoorten.getValue().toString(), "TYPE");
+                PropertiesLoadSave.save(Double.toString(Math.round(sliderGetal.getValue())), "GETAL");
+                PropertiesLoadSave.save(categorieKeuze.getValue().toString(), "CATEGORIE");
+                PropertiesLoadSave.save("GROEP", "SOORT");
+                showAlert();
+            } else if (kortingGroep.getSelectedToggle() == grensKorting){
+                PropertiesLoadSave.save(invoerGrens.getText(), "DREMPEL");
+                PropertiesLoadSave.save(comboBoxKortingenSoorten.getValue().toString(), "TYPE");
+                PropertiesLoadSave.save(Double.toString(Math.round(sliderGetal.getValue())), "GETAL");
+                PropertiesLoadSave.save("", "CATEGORIE");
+                PropertiesLoadSave.save("GRENS", "SOORT");
+                showAlert();
+            } else if (kortingGroep.getSelectedToggle() == duursteKorting){
+                PropertiesLoadSave.save(comboBoxKortingenSoorten.getValue().toString(), "TYPE");
+                PropertiesLoadSave.save(Double.toString(Math.round(sliderGetal.getValue())), "GETAL");
+                PropertiesLoadSave.save("", "CATEGORIE");
+                PropertiesLoadSave.save("", "DREMPEL");
+                PropertiesLoadSave.save("DUURSTE", "SOORT");
+                showAlert();
+            }
         });
-
-        file.setOnAction(onClick -> {
-            comboBox.setVisible(true);
-        });
-
-        saveKnop.setOnAction(onClick -> {
-            String database = comboBox.getValue().toString();
-            PropertiesLoadSave.save(database, "DATABASE");
-            Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
-            confirmation.setTitle("INFO");
-            confirmation.setHeaderText("Wijzigingen opgeslagen");
-            confirmation.setContentText("Wijzigingen opgeslagen, herstart het programma voor de aanpassingen.");
-            confirmation.showAndWait();
-        });
-
     }
 
+    public void showAlert(){
+        Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
+        confirmation.setTitle("INFO");
+        confirmation.setHeaderText("Kortingen opgeslagen");
+        confirmation.setContentText("Kortingen opgeslagen, herstart het programma voor de aanpassingen.");
+        confirmation.showAndWait();
+    }
 
     public void setController(KassaController controller) {
         this.controller = controller;
