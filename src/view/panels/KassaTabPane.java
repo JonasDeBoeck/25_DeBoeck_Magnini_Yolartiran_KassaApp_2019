@@ -3,6 +3,7 @@ package view.panels;
 import controller.KassaController;
 import database.PropertiesLoadSave;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
@@ -21,10 +22,10 @@ public class KassaTabPane extends GridPane {
     public KassaTabPane(KassaController controller) {
         tabel = new TableView<>();
         setController(controller);
-        invoer = new TextField();
+        invoer = new TextField("Vul hier een Artikel code in!");
 
         totaal = new Label();
-        verkoop = new Button("BETAAL");
+        verkoop = new Button("Afsluiten");
         onHold = new Button("On hold");
         offHold = new Button("actief");
 
@@ -63,15 +64,24 @@ public class KassaTabPane extends GridPane {
         );
 
         tabel.getColumns().addAll(naam, prijs, verwijder);
+        tabel.setMinSize(220,300);
+        tabel.setMaxWidth(242);
+
+        this.setPadding(new Insets(10,10,10,10));
+        this.setVgap(8);
+        this.setHgap(10);
 
         this.add(invoer, 1,1);
-        this.add(tabel, 1,3);
-        this.add(totaal, 1,4);
-        this.add(verkoop, 1,5);
-        this.add(onHold,1,7);
-        this.add(offHold, 1,8);
+        this.add(tabel, 2,1);
+        this.add(totaal, 2,3);
+        this.add(verkoop, 2,4);
+        this.add(onHold,3,1);
+        this.add(offHold, 3,1);
         onHold.setVisible(false);
 
+        invoer.setOnMouseClicked(event -> {
+            invoer.clear();
+        });
 
         invoer.setOnKeyReleased(event -> {
             if (event.getCode() == KeyCode.ENTER){
@@ -135,7 +145,7 @@ public class KassaTabPane extends GridPane {
 
     private void updateTotaal(){
         totaal.setVisible(true);
-        totaal.setText("totaal: " + controller.updateTotaalPrijs());
+        totaal.setText("Totaal prijs: " + controller.updateTotaalPrijs());
     }
 
     private void setController(KassaController controller) {

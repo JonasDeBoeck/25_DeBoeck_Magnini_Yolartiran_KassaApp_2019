@@ -19,6 +19,7 @@ public class KassaView {
 		stage.setY(20);
 		Group root = new Group();
 		Scene scene = new Scene(root, 750, 500);
+		scene.getStylesheets().add("view/panels/stylesheets/style.css");
 		BorderPane borderPane = new KassaMainPane(this.controller);
 		borderPane.prefHeightProperty().bind(scene.heightProperty());
 		borderPane.prefWidthProperty().bind(scene.widthProperty());
