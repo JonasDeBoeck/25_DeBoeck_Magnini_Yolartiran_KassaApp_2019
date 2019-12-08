@@ -87,6 +87,13 @@ public class KassaController implements Subject{
     }
 
     @Override
+    public void notifyObserversAfsluit() {
+        for (Observer observer : observers){
+            observer.updateAfsluit(Double.toString(updateTotaalPrijs()), Double.toString(getTotaleKorting()), Double.toString(getTotaalPrijsMetKorting()));
+        }
+    }
+
+    @Override
     public void registerObserver(Observer observer) {
         this.observers.add(observer);
     }

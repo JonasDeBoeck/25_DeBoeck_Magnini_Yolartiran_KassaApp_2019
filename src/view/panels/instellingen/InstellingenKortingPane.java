@@ -168,7 +168,7 @@ public class InstellingenKortingPane extends GridPane {
                 PropertiesLoadSave.save("", "GETAL");
                 PropertiesLoadSave.save("", "CATEGORIE");
                 PropertiesLoadSave.save("", "DREMPEL");
-                PropertiesLoadSave.save("", "SOORT");
+                PropertiesLoadSave.save("GEEN", "SOORT");
                 showAlert();
             }
         });

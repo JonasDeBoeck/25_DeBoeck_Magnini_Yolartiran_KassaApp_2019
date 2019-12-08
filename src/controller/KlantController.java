@@ -32,6 +32,11 @@ public class KlantController implements Observer {
         view.update(winkelwagentje, prijs);
     }
 
+    @Override
+    public void updateAfsluit(String totalePrijs, String korting, String totalePrijsMetKorting) {
+
+    }
+
     private void setModel(Winkel model) {
         this.model = model;
     }

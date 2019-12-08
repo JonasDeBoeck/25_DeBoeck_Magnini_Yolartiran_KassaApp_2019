@@ -19,13 +19,15 @@ import java.util.Map;
 public class KlantMainPane extends GridPane {
     private KlantController controller;
     private TableView<Map.Entry<Artikel, Integer>> tabel;
-    private Label totaal;
+    private Label totaal, totaalMetKorting, korting;
 
     public KlantMainPane (KlantController controller) {
         setController(controller);
         controller.setView(this);
         tabel = new TableView<>();
         totaal = new Label("Totaal prijs: ");
+        totaalMetKorting = new Label();
+        korting = new Label();
 
         TableColumn<Map.Entry<Artikel, Integer>, String> naam = new TableColumn<>("Artikel");
         naam.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<Artikel, Integer>, String>, ObservableValue<String>>() {
@@ -57,6 +59,11 @@ public class KlantMainPane extends GridPane {
 
         this.add(tabel, 0, 0);
         this.add(totaal, 0, 1);
+        this.add(totaalMetKorting, 0,2);
+        this.add(korting, 0,3);
+
+        totaalMetKorting.setVisible(false);
+
     }
 
     private void setController(KlantController controller) {
@@ -66,5 +73,12 @@ public class KlantMainPane extends GridPane {
     public void update (ObservableMap<Artikel, Integer> artikels, String prijs) {
         tabel.setItems(FXCollections.observableArrayList(artikels.entrySet()));
         totaal.setText("Totaal prijs: " + prijs);
+    }
+
+    public void updateAfsluit(String totalePrijs, String korting, String totalePrijsMetKorting){
+        tabel.setVisible(false);
+        totaal.setText("Totaal prijs: " + totalePrijs);
+        totaalMetKorting.setText("Totale prijs met korting: " + totalePrijsMetKorting);
+        this.korting.setText("Verdiende korting: " + korting);
     }
 }
