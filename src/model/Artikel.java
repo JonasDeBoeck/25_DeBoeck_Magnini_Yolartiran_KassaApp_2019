@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Artikel {
     private String artikelId, naam;
-    private double prijs;
+    private double prijs, korting;
     private int aantalInStock;
     private ArtikelCategorie artikelCategorie;
 
@@ -15,6 +15,7 @@ public class Artikel {
         setPrijs(prijs);
         setAantalInStock(aantalInStock);
         setArtikelCategorie(artikelCategorie);
+        korting = 0;
     }
 
     public String toString() {
@@ -31,6 +32,9 @@ public class Artikel {
         return lijst;
     }
 
+    public double getKorting() {
+        return korting;
+    }
 
     private String parsePrijs(double prijs) {
         return Double.toString(prijs).replace(",", ". ");
@@ -74,5 +78,9 @@ public class Artikel {
 
     private void setArtikelCategorie(String artikelCategorie) {
         this.artikelCategorie = ArtikelCategorie.valueOf(artikelCategorie.toUpperCase());
+    }
+
+    public void setKorting (double korting) {
+        this.korting = korting;
     }
 }

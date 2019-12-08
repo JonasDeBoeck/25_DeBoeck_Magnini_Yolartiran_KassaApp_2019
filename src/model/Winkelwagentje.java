@@ -25,4 +25,12 @@ public class Winkelwagentje {
     public List<Artikel> getArtikels () {
         return this.artikels;
     }
+
+    public double getTotaalPrijsMetKorting() {
+        double totaal = 0;
+        for (Artikel artikel : artikels) {
+            totaal += (artikel.getPrijs() - artikel.getKorting());
+        }
+        return totaal;
+    }
 }

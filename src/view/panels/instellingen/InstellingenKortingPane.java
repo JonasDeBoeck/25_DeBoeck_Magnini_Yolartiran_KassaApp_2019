@@ -145,20 +145,20 @@ public class InstellingenKortingPane extends GridPane {
             if (kortingGroep.getSelectedToggle() == groepKorting){
                 PropertiesLoadSave.save("", "DREMPEL");
                 PropertiesLoadSave.save(comboBoxKortingenSoorten.getValue().toString(), "TYPE");
-                PropertiesLoadSave.save(Double.toString(Math.round(sliderGetal.getValue())), "GETAL");
+                PropertiesLoadSave.save(Integer.toString((int) Math.round(sliderGetal.getValue())), "GETAL");
                 PropertiesLoadSave.save(categorieKeuze.getValue().toString(), "CATEGORIE");
                 PropertiesLoadSave.save("GROEP", "SOORT");
                 showAlert();
             } else if (kortingGroep.getSelectedToggle() == grensKorting){
                 PropertiesLoadSave.save(invoerGrens.getText(), "DREMPEL");
                 PropertiesLoadSave.save(comboBoxKortingenSoorten.getValue().toString(), "TYPE");
-                PropertiesLoadSave.save(Double.toString(Math.round(sliderGetal.getValue())), "GETAL");
+                PropertiesLoadSave.save(Integer.toString((int) Math.round(sliderGetal.getValue())), "GETAL");
                 PropertiesLoadSave.save("", "CATEGORIE");
                 PropertiesLoadSave.save("GRENS", "SOORT");
                 showAlert();
             } else if (kortingGroep.getSelectedToggle() == duursteKorting){
                 PropertiesLoadSave.save(comboBoxKortingenSoorten.getValue().toString(), "TYPE");
-                PropertiesLoadSave.save(Double.toString(Math.round(sliderGetal.getValue())), "GETAL");
+                PropertiesLoadSave.save(Integer.toString(Math.round((int) sliderGetal.getValue())), "GETAL");
                 PropertiesLoadSave.save("", "CATEGORIE");
                 PropertiesLoadSave.save("", "DREMPEL");
                 PropertiesLoadSave.save("DUURSTE", "SOORT");

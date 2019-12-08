@@ -101,6 +101,14 @@ public class KassaController implements Subject{
         model.setOffHold();
     }
 
+    public double getTotaalPrijsMetKorting() {
+        return model.getTotaalPrijsMetKorting();
+    }
+
+    public double getTotaleKorting() {
+        return updateTotaalPrijs() - getTotaalPrijsMetKorting();
+    }
+
     public boolean legeOnHold(){
         return model.getOnHoldWinkelwagentje().getArtikels().isEmpty();
     }

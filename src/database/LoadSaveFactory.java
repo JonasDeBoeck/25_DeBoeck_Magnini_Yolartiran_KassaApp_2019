@@ -1,7 +1,5 @@
 package database;
 
-import java.lang.reflect.InvocationTargetException;
-
 public class LoadSaveFactory {
     private static LoadSaveFactory uniqueFactory;
 

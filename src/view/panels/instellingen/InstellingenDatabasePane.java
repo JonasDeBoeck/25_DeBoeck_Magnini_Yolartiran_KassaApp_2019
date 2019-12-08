@@ -25,8 +25,6 @@ public class InstellingenDatabasePane extends GridPane {
 
     private Button saveKnop;
 
-
-
     public InstellingenDatabasePane(KassaController controller){
         setController(controller);
 
@@ -71,13 +69,21 @@ public class InstellingenDatabasePane extends GridPane {
         });
 
         saveKnop.setOnAction(onClick -> {
-            String database = comboBox.getValue().toString();
-            PropertiesLoadSave.save(database, "DATABASE");
-            Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
-            confirmation.setTitle("INFO");
-            confirmation.setHeaderText("Wijzigingen opgeslagen");
-            confirmation.setContentText("Wijzigingen opgeslagen, herstart het programma voor de aanpassingen.");
-            confirmation.showAndWait();
+            if (groep.getSelectedToggle() == SQL) {
+                Alert information = new Alert(Alert.AlertType.INFORMATION);
+                information.setTitle("INFO");
+                information.setHeaderText("Nog niet geïmplementeerd");
+                information.setContentText("Volgende keuze: sql, is nog niet geïmplementeerd als databank.");
+                information.showAndWait();
+            } else {
+                String database = comboBox.getValue().toString();
+                PropertiesLoadSave.save(database, "DATABASE");
+                Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
+                confirmation.setTitle("INFO");
+                confirmation.setHeaderText("Wijzigingen opgeslagen");
+                confirmation.setContentText("Wijzigingen opgeslagen, herstart het programma voor de aanpassingen.");
+                confirmation.showAndWait();
+            }
         });
 
     }

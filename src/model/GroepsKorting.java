@@ -13,31 +13,33 @@ public class GroepsKorting implements KortingStrategy {
     public GroepsKorting () {
         String cat = PropertiesLoadSave.load("CATEGORIE");
         setCategorie(ArtikelCategorie.valueOf(cat.toUpperCase()));
-        setAantal(Integer.parseInt((PropertiesLoadSave.load("AANTAL"))));
+        setAantal(Integer.parseInt((PropertiesLoadSave.load("GETAL"))));
         setType(PropertiesLoadSave.load("TYPE"));
     }
 
-    public double berekenPrijs(List<Artikel> lijst){
-        double prijs = 0;
+    public void berekenPrijs(List<Artikel> lijst){
          switch (this.type) {
              case "Euro":
-                 prijs = berekenEuro(lijst);
+                 berekenEuro(lijst);
                  break;
              case "Percentage":
-                 prijs = berekenProcent(lijst);
+                 berekenProcent(lijst);
          }
-         return prijs;
     }
 
-    private double berekenProcent (List<Artikel> lijst) {
+    private void berekenProcent (List<Artikel> lijst) {
         for (Artikel a : lijst) {
-
+            if (a.getArtikelCategorie().getArtikelCategorieAlsString().equals(PropertiesLoadSave.load("CATEGORIE").toLowerCase())) {
+                a.setKorting(a.getPrijs() - ((a.getPrijs()/100)*Integer.parseInt(PropertiesLoadSave.load("GETAL"))));
+            }
         }
     }
 
-    private double berekenEuro (List<Artikel> lijst) {
+    private void berekenEuro (List<Artikel> lijst) {
         for (Artikel a : lijst) {
-
+            if (a.getArtikelCategorie().getArtikelCategorieAlsString().equals(PropertiesLoadSave.load("CATEGORIE").toLowerCase())) {
+                a.setKorting(Integer.parseInt(PropertiesLoadSave.load("GETAL")));
+            }
         }
     }
 

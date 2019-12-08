@@ -11,9 +11,11 @@ public class Winkel {
     private Map<String, Artikel> artikels;
     private Winkelwagentje winkelwagentje, onHoldWinkelwagentje;
     private DatabaseContext db;
+    private KortingContext kortingen;
 
     public Winkel () {
         setDb(new DatabaseContext());
+        setKortingen(new KortingContext());
         this.artikels = new HashMap<>();
         this.winkelwagentje = new Winkelwagentje();
         this.onHoldWinkelwagentje = new Winkelwagentje();
@@ -37,6 +39,10 @@ public class Winkel {
 
     private void setDb(DatabaseContext db) {
         this.db = db;
+    }
+
+    private void setKortingen(KortingContext korting) {
+        this.kortingen = korting;
     }
 
     public Winkelwagentje getWinkelwagentje() {
@@ -71,5 +77,9 @@ public class Winkel {
 
     public void clearOnHold(){
         this.onHoldWinkelwagentje.getArtikels().clear();
+    }
+
+    public double getTotaalPrijsMetKorting() {
+        return winkelwagentje.getTotaalPrijsMetKorting();
     }
 }
