@@ -6,6 +6,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -57,12 +58,20 @@ public class KlantMainPane extends GridPane {
         tabel.getColumns().add(prijs);
         tabel.getColumns().add(aantal);
 
+        tabel.setMinSize(220,300);
+        tabel.setMaxWidth(242);
+
+        this.setPadding(new Insets(10,10,10,10));
+        this.setVgap(8);
+        this.setHgap(10);
+
         this.add(tabel, 0, 0);
         this.add(totaal, 0, 1);
         this.add(totaalMetKorting, 0,2);
         this.add(korting, 0,3);
 
         totaalMetKorting.setVisible(false);
+        korting.setVisible(false);
 
     }
 
@@ -71,6 +80,9 @@ public class KlantMainPane extends GridPane {
     }
 
     public void update (ObservableMap<Artikel, Integer> artikels, String prijs) {
+        tabel.setVisible(true);
+        totaalMetKorting.setVisible(false);
+        korting.setVisible(false);
         tabel.setItems(FXCollections.observableArrayList(artikels.entrySet()));
         totaal.setText("Totaal prijs: " + prijs);
     }
@@ -79,6 +91,8 @@ public class KlantMainPane extends GridPane {
         tabel.setVisible(false);
         totaal.setText("Totaal prijs: " + totalePrijs);
         totaalMetKorting.setText("Totale prijs met korting: " + totalePrijsMetKorting);
+        totaalMetKorting.setVisible(true);
         this.korting.setText("Verdiende korting: " + korting);
+        this.korting.setVisible(true);
     }
 }

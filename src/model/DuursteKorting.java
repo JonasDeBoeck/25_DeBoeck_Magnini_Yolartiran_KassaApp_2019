@@ -6,13 +6,13 @@ import java.util.List;
 
 public class DuursteKorting implements KortingStrategy {
 
-    private ArtikelCategorie categorie;
+    //private ArtikelCategorie categorie;
     private int aantal;
     private String type;
 
     public DuursteKorting() {
-        String cat = PropertiesLoadSave.load("CATEGORIE");
-        setCategorie(ArtikelCategorie.valueOf(cat.toUpperCase()));
+        //String cat = PropertiesLoadSave.load("CATEGORIE");
+        //setCategorie(ArtikelCategorie.valueOf(cat.toUpperCase()));
         setAantal(Integer.parseInt((PropertiesLoadSave.load("GETAL"))));
         setType(PropertiesLoadSave.load("TYPE"));
     }
@@ -47,9 +47,9 @@ public class DuursteKorting implements KortingStrategy {
         duurste.setKorting(Integer.parseInt(PropertiesLoadSave.load("GETAL")));
     }
 
-    public void setCategorie(ArtikelCategorie categorie) {
+    /*public void setCategorie(ArtikelCategorie categorie) {
         this.categorie = categorie;
-    }
+    }*/
 
     public void setAantal(int aantal) {
         this.aantal = aantal;

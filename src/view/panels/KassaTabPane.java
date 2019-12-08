@@ -80,6 +80,8 @@ public class KassaTabPane extends GridPane {
         this.add(onHold,3,1);
         this.add(offHold, 3,1);
         this.add(betaal, 2,4);
+        this.add(korting, 2,1);
+        this.add(totaalMetKorting, 2,2);
         onHold.setVisible(false);
         betaal.setVisible(false);
         invoer.setOnMouseClicked(event -> {
@@ -121,10 +123,10 @@ public class KassaTabPane extends GridPane {
             onHold.setVisible(false);
             betaal.setVisible(true);
             afsluit.setVisible(false);
-            //korting.setText("Korting: " + controller.)
-            //totaalMetKorting.setText("Totaal met korting: "+controller.);
-            this.add(korting, 2,2);
-            this.add(totaalMetKorting, 2,3);
+            korting.setText("Korting: " + controller.getTotaleKorting());
+            totaalMetKorting.setText("Totaal met korting: "+ controller.getTotaalPrijsMetKorting());
+            korting.setVisible(true);
+            totaalMetKorting.setVisible(true);
         });
 
         betaal.setOnAction(event -> {
@@ -132,6 +134,16 @@ public class KassaTabPane extends GridPane {
             controller.notifyObservers();
             tabel.setItems(controller.getWinkelWagentje());
             controller.save("artikel." + PropertiesLoadSave.load("DATABASE"), controller.getWinkelWagentje());
+            totaal.setVisible(true);
+            invoer.setVisible(true);
+            tabel.setVisible(true);
+            offHold.setVisible(true);
+            onHold.setVisible(false);
+            betaal.setVisible(false);
+            afsluit.setVisible(true);
+            korting.setVisible(false);
+            totaalMetKorting.setVisible(false);
+            updateTotaal();
         });
 
         onHold.setOnAction(event ->{

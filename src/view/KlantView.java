@@ -26,6 +26,7 @@ public class KlantView extends GridPane{
 		stage.setY(20);
 		Group root = new Group();
 		Scene scene = new Scene(root, 500, 500);
+		scene.getStylesheets().add("view/panels/stylesheets/style.css");
 		GridPane gridPane = new KlantMainPane(this.controller);
 		gridPane.prefHeightProperty().bind(scene.heightProperty());
 		gridPane.prefWidthProperty().bind(scene.widthProperty());

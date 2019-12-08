@@ -34,7 +34,7 @@ public class KlantController implements Observer {
 
     @Override
     public void updateAfsluit(String totalePrijs, String korting, String totalePrijsMetKorting) {
-
+        view.updateAfsluit(totalePrijs, korting, totalePrijsMetKorting);
     }
 
     private void setModel(Winkel model) {
