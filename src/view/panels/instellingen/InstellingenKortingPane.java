@@ -100,7 +100,6 @@ public class InstellingenKortingPane extends GridPane {
             getal.setVisible(false);
             sliderGetal.setVisible(false);
             getalKorting.setVisible(false);
-            saveKorting.setVisible(false);
             categorieKeuze.setVisible(false);
             invoerGrens.setVisible(false);
         });
@@ -163,6 +162,13 @@ public class InstellingenKortingPane extends GridPane {
                 PropertiesLoadSave.save("", "CATEGORIE");
                 PropertiesLoadSave.save("", "DREMPEL");
                 PropertiesLoadSave.save("DUURSTE", "SOORT");
+                showAlert();
+            } else if (kortingGroep.getSelectedToggle() == geenKorting){
+                PropertiesLoadSave.save("", "TYPE");
+                PropertiesLoadSave.save("", "GETAL");
+                PropertiesLoadSave.save("", "CATEGORIE");
+                PropertiesLoadSave.save("", "DREMPEL");
+                PropertiesLoadSave.save("", "SOORT");
                 showAlert();
             }
         });

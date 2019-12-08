@@ -12,7 +12,7 @@ public class PropertiesLoadSave {
     public static String load(String property){
         String db = "";
         Properties prop = new Properties();
-        try (FileInputStream fileInputStream = new FileInputStream("src/bestanden/properties.properties")){
+        try (FileInputStream fileInputStream = new FileInputStream("src/bestanden/config.properties")){
             prop.load(fileInputStream);
             db = prop.getProperty(property);
         } catch (Exception e){
@@ -28,12 +28,12 @@ public class PropertiesLoadSave {
     public static void save(String keuze, String property) {
 
         try {
-            FileInputStream a =new FileInputStream("src/bestanden/properties.properties");
+            FileInputStream a =new FileInputStream("src/bestanden/config.properties");
             Properties prop = new Properties();
             prop.load(a);
             a.close();
 
-            FileOutputStream fileOutputStream = new FileOutputStream("src/bestanden/properties.properties");
+            FileOutputStream fileOutputStream = new FileOutputStream("src/bestanden/config.properties");
             prop.setProperty(property, keuze);
             prop.store(fileOutputStream, null);
             fileOutputStream.close();
