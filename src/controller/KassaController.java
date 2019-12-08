@@ -109,6 +109,7 @@ public class KassaController implements Subject{
     }
 
     public double getTotaalPrijsMetKorting() {
+        model.setKorting();
         return model.getTotaalPrijsMetKorting();
     }
 

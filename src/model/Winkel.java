@@ -71,6 +71,10 @@ public class Winkel {
         this.onHoldWinkelwagentje.getArtikels().clear();
     }
 
+    public void setKorting() {
+        this.kortingen.getKorting(this.winkelwagentje.getArtikels());
+    }
+
     public Winkelwagentje getOnHoldWinkelwagentje() {
         return onHoldWinkelwagentje;
     }
