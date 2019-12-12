@@ -3,9 +3,7 @@ package model;
 import database.DatabaseContext;
 import database.PropertiesLoadSave;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Winkel {
     private Map<String, Artikel> artikels;
@@ -93,5 +91,18 @@ public class Winkel {
 
     public double getTotaalPrijsMetKorting() {
         return winkelwagentje.getTotaalPrijsMetKorting();
+    }
+
+    //6 spaties, 3 spaties, 2 spaties
+    public void printTicket () {
+        Set<Artikel> mandje = new HashSet<>(winkelwagentje.getArtikels());
+        String tussenLijn = "**********************************" ;
+        String ticket = "Omschrijving      Aantal   Prijs  \n";
+        System.out.println(ticket + tussenLijn);
+        for (Artikel artikel : mandje) {
+            String art = "%-18s%-8s%s%n";
+            System.out.printf(art, artikel.getNaam(), winkelwagentje.getCount(artikel), artikel.getPrijs());
+        }
+        System.out.println(tussenLijn);
     }
 }

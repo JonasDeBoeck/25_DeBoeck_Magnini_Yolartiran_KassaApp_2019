@@ -1,7 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 public class Artikel {
     private String artikelId, naam;
@@ -82,5 +82,22 @@ public class Artikel {
 
     public void setKorting (double korting) {
         this.korting = korting;
+    }
+
+    @Override
+    public boolean equals (Object o) {
+        boolean result = false;
+        if (o instanceof Artikel) {
+            Artikel a = (Artikel) o;
+            if (this.artikelId.equals(((Artikel) o).artikelId)) {
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(artikelId);
     }
 }
