@@ -18,6 +18,7 @@ public class Winkel {
         setKortingen(new KortingContext());
         this.artikels = new HashMap<>();
         this.winkelwagentje = new Winkelwagentje();
+        winkelwagentje.setState(this.winkelwagentje.getActief());
         this.onHoldWinkelwagentje = new Winkelwagentje();
         artikels.putAll(db.getAll("artikel." + PropertiesLoadSave.load("DATABASE")));
     }
@@ -35,6 +36,7 @@ public class Winkel {
             artikels.get(artikel.getArtikelId()).setAantalInStock(artikel.getAantalInStock() - 1);
         }
         db.saveAll(filename, artikels);
+        winkelwagentje.setState(this.winkelwagentje.getActief());
     }
 
     private void setDb(DatabaseContext db) {
@@ -64,11 +66,15 @@ public class Winkel {
     public void setOnHold(){
         onHoldWinkelwagentje.getArtikels().addAll(this.winkelwagentje.getArtikels());
         clearCart();
+        onHoldWinkelwagentje.setState(this.winkelwagentje.getOnHold());
+        System.out.println(this.onHoldWinkelwagentje.getState().toString());
     }
 
     public void setOffHold(){
         winkelwagentje.getArtikels().addAll(this.onHoldWinkelwagentje.getArtikels());
         this.onHoldWinkelwagentje.getArtikels().clear();
+        winkelwagentje.setState(this.winkelwagentje.getActief());
+        System.out.println(this.winkelwagentje.getState().toString());
     }
 
     public void setKorting() {
@@ -81,6 +87,8 @@ public class Winkel {
 
     public void clearOnHold(){
         this.onHoldWinkelwagentje.getArtikels().clear();
+        winkelwagentje.setState(this.winkelwagentje.getGeannuleerd());
+        System.out.println(this.winkelwagentje.getState().toString());
     }
 
     public double getTotaalPrijsMetKorting() {

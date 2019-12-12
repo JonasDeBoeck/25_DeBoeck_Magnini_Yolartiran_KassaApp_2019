@@ -17,7 +17,7 @@ public class KassaTabPane extends GridPane {
     private KassaController controller;
     private Label totaal, totaalMetKorting, korting;
     private TextField invoer;
-    private Button afsluit, onHold, offHold, betaal;
+    private Button afsluit, onHold, offHold, betaal, annuleer;
 
     public KassaTabPane(KassaController controller) {
         tabel = new TableView<>();
@@ -30,6 +30,7 @@ public class KassaTabPane extends GridPane {
         offHold = new Button("actief");
         totaalMetKorting = new Label();
         korting = new Label();
+        annuleer = new Button("ANNULEER");
 
         TableColumn<Artikel, String> naam = new TableColumn<>("Artikel");
         naam.setCellValueFactory(new PropertyValueFactory<Artikel, String>("Naam"));
@@ -82,8 +83,10 @@ public class KassaTabPane extends GridPane {
         this.add(betaal, 2,4);
         this.add(korting, 2,1);
         this.add(totaalMetKorting, 2,2);
+        this.add(annuleer, 3,4);
         onHold.setVisible(false);
         betaal.setVisible(false);
+        annuleer.setVisible(false);
         invoer.setOnMouseClicked(event -> {
             invoer.clear();
         });
@@ -111,14 +114,11 @@ public class KassaTabPane extends GridPane {
 
 
         afsluit.setOnAction(event -> {
-            //controller.clearCart();
             controller.notifyObserversAfsluit();
-            //tabel.setItems(controller.getWinkelWagentje());
             totaal.setVisible(true);
-            //onHold.setVisible(false);
-            //offHold.setVisible(true);
             invoer.setVisible(false);
             tabel.setVisible(false);
+            annuleer.setVisible(true);
             offHold.setVisible(false);
             onHold.setVisible(false);
             betaal.setVisible(true);
@@ -152,6 +152,21 @@ public class KassaTabPane extends GridPane {
             onHold.setVisible(controller.legeOnHold());
             tabel.setItems(controller.getWinkelWagentje());
             totaal.setVisible(false);
+        });
+
+        annuleer.setOnAction(event -> {
+            controller.clearCart();
+            controller.notifyObservers();
+            tabel.setItems(controller.getWinkelWagentje());
+            totaal.setVisible(true);
+            invoer.setVisible(true);
+            tabel.setVisible(true);
+            offHold.setVisible(true);
+            onHold.setVisible(false);
+            betaal.setVisible(false);
+            afsluit.setVisible(true);
+            korting.setVisible(false);
+            totaalMetKorting.setVisible(false);
         });
 
         offHold.setOnAction(event ->{
