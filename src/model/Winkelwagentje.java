@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,8 @@ public class Winkelwagentje implements Serializable{
 
     private State actief, inactief, onHold, betaald, geannuleerd, state;
     private List<Artikel> artikels;
+
+
 
     public Winkelwagentje () {
         this.artikels = new ArrayList<>();
@@ -28,8 +32,10 @@ public class Winkelwagentje implements Serializable{
     }
 
     public void maakLeeg () {
-        this.artikels.clear();
+        System.out.println(state.toString());
+        this.state.maakLeeg(artikels);
     }
+
 
     public List<Artikel> getArtikels () {
         return this.artikels;
@@ -61,26 +67,6 @@ public class Winkelwagentje implements Serializable{
 
     public State getState() {
         return state;
-    }
-
-    public void setOnHold(State onHold) {
-        this.onHold = onHold;
-    }
-
-    public void setActief(State actief) {
-        this.actief = actief;
-    }
-
-    public void setInactief(State inactief) {
-        this.inactief = inactief;
-    }
-
-    public void setBetaald(State betaald) {
-        this.betaald = betaald;
-    }
-
-    public void setGeannuleerd(State geannuleerd) {
-        this.geannuleerd = geannuleerd;
     }
 
     public State getBetaald() {

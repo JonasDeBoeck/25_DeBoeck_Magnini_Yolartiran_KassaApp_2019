@@ -5,7 +5,6 @@ import controller.KassaController;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
-import view.panels.instellingen.InstellingenDatabasePane;
 import view.panels.KassaTabPane;
 import view.panels.ProductOverviewPane;
 import view.panels.instellingen.InstellingenMainPane;

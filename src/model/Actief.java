@@ -17,23 +17,28 @@ public class Actief implements State {
     @Override
     public void zetOnHold() {
         winkelwagentje.setState(this.winkelwagentje.getOnHold());
-        System.out.println("staat on hold");
     }
 
     @Override
     public void voegArtikelToe(Artikel artikel, List<Artikel> artikels) {
         artikels.add(artikel);
-        System.out.println(artikel.toString() + " toegevoegd");
     }
 
     @Override
     public void verwijderArtikel(Artikel artikel, List<Artikel> artikels) {
         artikels.remove(artikel);
-        System.out.println(artikel.toString() + "verwijderd");
+    }
+
+    @Override
+    public void maakLeeg(List<Artikel> artikels) {
+        if (artikels.isEmpty()){
+            throw new IllegalArgumentException("Kan niet afsluiten want winkelkar is leeg");
+        }
+        artikels.clear();
     }
 
     @Override
     public String toString() {
-        return "staat op actief";
+        return "State: Actief";
     }
 }

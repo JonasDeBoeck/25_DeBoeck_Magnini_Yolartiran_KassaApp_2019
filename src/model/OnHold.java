@@ -14,11 +14,11 @@ public class OnHold implements State {
 
     @Override
     public void verwijderKarOnHold() {
-        winkelwagentje.setState(this.winkelwagentje.getActief());
+        winkelwagentje.setState(this.winkelwagentje.getGeannuleerd());
     }
 
     @Override
     public String toString() {
-        return "staat op hold state";
+        return "State: OnHold";
     }
 }

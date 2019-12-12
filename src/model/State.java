@@ -36,4 +36,8 @@ public interface State extends Serializable{
     default void verwijderArtikel(Artikel artikel, List<Artikel> artikels){
         throw new IllegalArgumentException("kan niet worden verwijderd");
     }
+
+    default void maakLeeg(List<Artikel> artikels){
+        throw new IllegalArgumentException("kan niet worden leeg gemaakt");
+    }
 }

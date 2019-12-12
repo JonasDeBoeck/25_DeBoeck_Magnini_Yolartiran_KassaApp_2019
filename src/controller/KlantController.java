@@ -8,6 +8,8 @@ import model.Winkel;
 import view.KlantMainPane;
 import view.KlantView;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,6 +38,7 @@ public class KlantController implements Observer {
     public void updateAfsluit(String totalePrijs, String korting, String totalePrijsMetKorting) {
         view.updateAfsluit(totalePrijs, korting, totalePrijsMetKorting);
     }
+
 
     private void setModel(Winkel model) {
         this.model = model;

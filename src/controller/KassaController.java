@@ -47,6 +47,8 @@ public class KassaController implements Subject{
         model.save(filename, cart);
     }
 
+    public void load (String filename){model.load(filename);}
+
     public void addToCart (Artikel artikel) {
         model.addToCart(artikel);
     }
@@ -86,6 +88,7 @@ public class KassaController implements Subject{
         }
     }
 
+
     @Override
     public void notifyObserversAfsluit() {
         for (Observer observer : observers){
@@ -120,4 +123,26 @@ public class KassaController implements Subject{
     public boolean legeOnHold(){
         return model.getOnHoldWinkelwagentje().getArtikels().isEmpty();
     }
+
+    public void setStateOnInactief(){
+        model.setStateOnInactief();
+    }
+
+    public void setStateOnBetaald(){
+        model.setStateOnBetaald();
+    }
+
+    public void setStateOnGeannuleerd(){
+        model.setStateOnGeannuleerd();
+    }
+
+    public void setStateOnActief(){
+        model.setStateOnActief();
+    }
+
+    public String getState(){
+        return model.getState().toString();
+    }
+
+
 }

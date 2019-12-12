@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Geannuleerd implements State{
     private Winkelwagentje winkelwagentje;
 
@@ -8,7 +10,12 @@ public class Geannuleerd implements State{
     }
 
     @Override
+    public void maakLeeg(List<Artikel> artikels) {
+        artikels.clear();
+    }
+
+    @Override
     public String toString() {
-        return "dood";
+        return "State: geannuleerd";
     }
 }

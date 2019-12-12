@@ -58,7 +58,11 @@ public class KassaTabPane extends GridPane {
                                 event -> {
                                     controller.deleteFromCart(item);
                                     tabel.setItems(controller.getWinkelWagentje());
-                                    controller.notifyObservers();
+                                    if (controller.getState().equals("State: Inactief")){
+                                        controller.notifyObserversAfsluit();
+                                    } else controller.notifyObservers();
+                                    korting.setText("Korting: " + controller.getTotaleKorting());
+                                    totaalMetKorting.setText("Totaal met korting: "+ controller.getTotaalPrijsMetKorting());
                                     updateTotaal();
                                 }
                         );
@@ -81,7 +85,7 @@ public class KassaTabPane extends GridPane {
         this.add(onHold,3,1);
         this.add(offHold, 3,1);
         this.add(betaal, 2,4);
-        this.add(korting, 2,1);
+        this.add(korting, 1,2);
         this.add(totaalMetKorting, 2,2);
         this.add(annuleer, 3,4);
         onHold.setVisible(false);
@@ -114,22 +118,31 @@ public class KassaTabPane extends GridPane {
 
 
         afsluit.setOnAction(event -> {
-            controller.notifyObserversAfsluit();
-            totaal.setVisible(true);
-            invoer.setVisible(false);
-            tabel.setVisible(false);
-            annuleer.setVisible(true);
-            offHold.setVisible(false);
-            onHold.setVisible(false);
-            betaal.setVisible(true);
-            afsluit.setVisible(false);
-            korting.setText("Korting: " + controller.getTotaleKorting());
-            totaalMetKorting.setText("Totaal met korting: "+ controller.getTotaalPrijsMetKorting());
-            korting.setVisible(true);
-            totaalMetKorting.setVisible(true);
+            try {
+                korting.setText("Korting: " + controller.getTotaleKorting());
+                totaalMetKorting.setText("Totaal met korting: "+ controller.getTotaalPrijsMetKorting());
+                controller.notifyObserversAfsluit();
+                controller.setStateOnInactief();
+                totaal.setVisible(true);
+                invoer.setVisible(false);
+                annuleer.setVisible(true);
+                offHold.setVisible(false);
+                onHold.setVisible(false);
+                betaal.setVisible(true);
+                afsluit.setVisible(false);
+                korting.setVisible(true);
+                totaalMetKorting.setVisible(true);
+            } catch (IndexOutOfBoundsException e){
+                Alert fout = new Alert(Alert.AlertType.ERROR);
+                fout.setTitle("FOUT");
+                fout.setHeaderText("Lege Winkelkar");
+                fout.setContentText("Je kan niet afsluiten met een lege winkel kar");
+                fout.showAndWait();
+            }
         });
 
         betaal.setOnAction(event -> {
+            controller.setStateOnBetaald();
             controller.clearCart();
             controller.notifyObservers();
             tabel.setItems(controller.getWinkelWagentje());
@@ -155,6 +168,7 @@ public class KassaTabPane extends GridPane {
         });
 
         annuleer.setOnAction(event -> {
+            controller.setStateOnGeannuleerd();
             controller.clearCart();
             controller.notifyObservers();
             tabel.setItems(controller.getWinkelWagentje());
@@ -167,6 +181,8 @@ public class KassaTabPane extends GridPane {
             afsluit.setVisible(true);
             korting.setVisible(false);
             totaalMetKorting.setVisible(false);
+            controller.setStateOnActief();
+            updateTotaal();
         });
 
         offHold.setOnAction(event ->{

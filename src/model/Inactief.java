@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Inactief implements State {
 
     private Winkelwagentje winkelwagentje;
@@ -18,7 +20,12 @@ public class Inactief implements State {
     }
 
     @Override
+    public void verwijderArtikel(Artikel artikel, List<Artikel> artikels) {
+        artikels.remove(artikel);
+    }
+
+    @Override
     public String toString() {
-        return "staat op inactief";
+        return "State: Inactief";
     }
 }
