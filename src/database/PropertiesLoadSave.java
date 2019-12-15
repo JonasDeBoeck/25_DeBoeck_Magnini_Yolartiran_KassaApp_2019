@@ -47,4 +47,7 @@ public class PropertiesLoadSave {
         }
     }
 
+    public static boolean propertyBestaat (String property) {
+        return !PropertiesLoadSave.load(property).equals("");
+    }
 }

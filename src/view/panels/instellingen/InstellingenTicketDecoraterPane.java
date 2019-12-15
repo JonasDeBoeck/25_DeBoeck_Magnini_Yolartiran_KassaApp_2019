@@ -52,27 +52,27 @@ public class InstellingenTicketDecoraterPane extends GridPane {
         this.setVgap(8);
         this.setHgap(10);
 
-        header.setSelected(propertyBestaat("HEADER"));
-        footer.setSelected(propertyBestaat("FOOTER"));
+        header.setSelected(PropertiesLoadSave.propertyBestaat("HEADER"));
+        footer.setSelected(PropertiesLoadSave.propertyBestaat("FOOTER"));
 
         headerAddons.setVisible(header.isSelected());
         footerAddons.setVisible(footer.isSelected());
         headerMessage.setVisible(header.isSelected());
         footerMessage.setVisible(footer.isSelected());
 
-        if (propertyBestaat("HBOODSCHAP")) {
+        if (PropertiesLoadSave.propertyBestaat("HBOODSCHAP")) {
             headerMessage.setText(PropertiesLoadSave.load("HBOODSCHAP"));
         }
 
-        if (propertyBestaat("FBOODSCHAP")) {
+        if (PropertiesLoadSave.propertyBestaat("FBOODSCHAP")) {
             headerMessage.setText(PropertiesLoadSave.load("FBOODSCHAP"));
         }
 
-        if (propertyBestaat("HEADER")) {
+        if (PropertiesLoadSave.propertyBestaat("HEADER")) {
             headerAddons.getSelectionModel().select(PropertiesLoadSave.load("HEADER"));
         }
 
-        if (propertyBestaat("FOOTER")) {
+        if (PropertiesLoadSave.propertyBestaat("FOOTER")) {
             footerAddons.getSelectionModel().select(PropertiesLoadSave.load("FOOTER"));
         }
 
@@ -109,9 +109,5 @@ public class InstellingenTicketDecoraterPane extends GridPane {
 
     public void setController(KassaController controller) {
         this.controller = controller;
-    }
-
-    public boolean propertyBestaat (String property) {
-        return !PropertiesLoadSave.load(property).equals("");
     }
 }

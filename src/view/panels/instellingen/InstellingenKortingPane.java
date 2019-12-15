@@ -59,8 +59,6 @@ public class InstellingenKortingPane extends GridPane {
         categorieKeuze = new ComboBox<>(categorien);
         invoerGrens = new TextField("Vul hier de drempel in");
 
-
-
         this.add(korting, 1, 1);
         this.add(groepKorting,1,2);
         this.add(categorieKeuze, 2,2);
@@ -79,11 +77,31 @@ public class InstellingenKortingPane extends GridPane {
         this.setVgap(8);
         this.setHgap(10);
 
+        if (PropertiesLoadSave.propertyBestaat("SOORT")) {
+            String soort = PropertiesLoadSave.load("SOORT");
+            soort = soort.substring(0,1).toUpperCase() + soort.substring(1).toLowerCase();
+            switch (soort) {
+                case "Drempel":
+                    grensKorting.setSelected(true);
+                    break;
+                case "Groep":
+                    groepKorting.setSelected(true);
+                    break;
+                case "Duurste":
+                    duursteKorting.setSelected(true);
+                    break;
+                default:
+                    geenKorting.setSelected(true);
+            }
+            sliderGetal.setValue(Double.parseDouble(PropertiesLoadSave.load("GETAL")));
+            getal.setText(PropertiesLoadSave.load("GETAL"));
+            String type = PropertiesLoadSave.load("TYPE");
+            type = type.substring(0, 1).toUpperCase() + type.substring(1).toLowerCase();
+            comboBoxKortingenSoorten.getSelectionModel().select(type);
+        }
 
-        categorieKeuze.setVisible(false);
-        invoerGrens.setVisible(false);
-
-
+        categorieKeuze.setVisible(groepKorting.isSelected());
+        invoerGrens.setVisible(grensKorting.isSelected());
 
         sliderGetal.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov,

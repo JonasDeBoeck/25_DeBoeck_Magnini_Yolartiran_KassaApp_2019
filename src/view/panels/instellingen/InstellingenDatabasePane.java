@@ -10,6 +10,8 @@ import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
+import java.util.Properties;
+
 
 public class InstellingenDatabasePane extends GridPane {
 
@@ -32,11 +34,9 @@ public class InstellingenDatabasePane extends GridPane {
         ToggleGroup groep = new ToggleGroup();
         SQL = new RadioButton("Sql");
         SQL.setToggleGroup(groep);
-        file = new RadioButton("db in memory");
+        file = new RadioButton("Db in memory");
         file.setToggleGroup(groep);
         comboBox = new ComboBox<>(optionsDB);
-
-
 
         //SAVE KNOP
         saveKnop = new Button("Save DB ");
@@ -57,15 +57,20 @@ public class InstellingenDatabasePane extends GridPane {
 
         /*Lay-out voor KORTING instellingen*/
 
-        comboBox.setVisible(false);
+        if (PropertiesLoadSave.propertyBestaat("DATABASE")) {
+            comboBox.getSelectionModel().select(PropertiesLoadSave.load("DATABASE"));
+        }
 
+        file.setSelected(PropertiesLoadSave.load("DATABASE").equals("txt") || PropertiesLoadSave.load("DATABASE").equals("xls"));
+
+        comboBox.setVisible(file.isSelected());
 
         SQL.setOnAction(onClick -> {
             comboBox.setVisible(false);
         });
 
         file.setOnAction(onClick -> {
-            comboBox.setVisible(true);
+            comboBox.setVisible(file.isSelected());
         });
 
         saveKnop.setOnAction(onClick -> {
