@@ -30,7 +30,12 @@ public class GroepsKorting implements KortingStrategy {
     private void berekenProcent (List<Artikel> lijst) {
         for (Artikel a : lijst) {
             if (a.getArtikelCategorie().getArtikelCategorieAlsString().equals(PropertiesLoadSave.load("CATEGORIE").toLowerCase())) {
-                a.setKorting(a.getPrijs() - ((a.getPrijs()/100)*Integer.parseInt(PropertiesLoadSave.load("GETAL"))));
+                double korting = a.getPrijs() - ((a.getPrijs() / 100) * Integer.parseInt(PropertiesLoadSave.load("GETAL")));
+                if (a.getPrijs() > korting) {
+                    a.setKorting(korting);
+                } else {
+                    a.setKorting(a.getPrijs());
+                }
             }
         }
     }
@@ -38,7 +43,11 @@ public class GroepsKorting implements KortingStrategy {
     private void berekenEuro (List<Artikel> lijst) {
         for (Artikel a : lijst) {
             if (a.getArtikelCategorie().getArtikelCategorieAlsString().equals(PropertiesLoadSave.load("CATEGORIE").toLowerCase())) {
-                a.setKorting(Integer.parseInt(PropertiesLoadSave.load("GETAL")));
+                if (a.getPrijs() > Integer.parseInt(PropertiesLoadSave.load("GETAL"))) {
+                    a.setKorting(Integer.parseInt(PropertiesLoadSave.load("GETAL")));
+                } else {
+                    a.setKorting(a.getPrijs());
+                }
             }
         }
     }

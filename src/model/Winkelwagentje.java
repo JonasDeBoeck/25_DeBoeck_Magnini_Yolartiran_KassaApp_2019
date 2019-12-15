@@ -42,11 +42,7 @@ public class Winkelwagentje implements Serializable{
     }
 
     public double getTotaalPrijsMetKorting() {
-        double totaal = 0;
-        for (Artikel artikel : artikels) {
-            totaal += (artikel.getPrijs() - artikel.getKorting());
-        }
-        return totaal;
+        return Bereken.berekenTotaalPrijsMetKorting(this.artikels);
     }
 
     public State getActief() {

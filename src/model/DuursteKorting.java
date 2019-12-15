@@ -34,7 +34,12 @@ public class DuursteKorting implements KortingStrategy {
                 duurste = a;
             }
         }
-        duurste.setKorting(duurste.getPrijs() - ((duurste.getPrijs()/100)*Integer.parseInt(PropertiesLoadSave.load("GETAL"))));
+        double korting = duurste.getPrijs() - ((duurste.getPrijs()/100)*Integer.parseInt(PropertiesLoadSave.load("GETAL")));
+        if (duurste.getPrijs() > korting) {
+            duurste.setKorting(korting);
+        } else {
+            duurste.setKorting(duurste.getPrijs());
+        }
     }
 
     private void berekenEuro (List<Artikel> lijst) {
@@ -44,12 +49,12 @@ public class DuursteKorting implements KortingStrategy {
                 duurste = a;
             }
         }
-        duurste.setKorting(Integer.parseInt(PropertiesLoadSave.load("GETAL")));
+        if (duurste.getPrijs() > Integer.parseInt(PropertiesLoadSave.load("GETAL"))) {
+            duurste.setKorting(Integer.parseInt(PropertiesLoadSave.load("GETAL")));
+        } else {
+            duurste.setKorting(duurste.getPrijs());
+        }
     }
-
-    /*public void setCategorie(ArtikelCategorie categorie) {
-        this.categorie = categorie;
-    }*/
 
     public void setAantal(int aantal) {
         this.aantal = aantal;

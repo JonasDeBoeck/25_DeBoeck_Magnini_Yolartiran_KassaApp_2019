@@ -119,6 +119,7 @@ public class KassaTabPane extends GridPane {
 
         afsluit.setOnAction(event -> {
             try {
+                controller.setKorting();
                 korting.setText("Korting: " + controller.getTotaleKorting());
                 totaalMetKorting.setText("Totaal met korting: "+ controller.getTotaalPrijsMetKorting());
                 controller.notifyObserversAfsluit();
@@ -144,10 +145,10 @@ public class KassaTabPane extends GridPane {
         betaal.setOnAction(event -> {
             controller.setStateOnBetaald();
             controller.printKassaBon();
+            controller.save("artikel." + PropertiesLoadSave.load("DATABASE"), controller.getWinkelWagentje());
             controller.clearCart();
             controller.notifyObservers();
             tabel.setItems(controller.getWinkelWagentje());
-            controller.save("artikel." + PropertiesLoadSave.load("DATABASE"), controller.getWinkelWagentje());
             totaal.setVisible(true);
             invoer.setVisible(true);
             tabel.setVisible(true);

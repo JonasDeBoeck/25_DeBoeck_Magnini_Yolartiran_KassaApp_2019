@@ -19,7 +19,7 @@ public class KassaTicket implements Ticket {
             System.out.printf(art, artikel.getNaam(), telVoorkomen(artikel, artikelList), artikel.getPrijs());
         }
         System.out.println(tussenLijn);
-        System.out.println("Betaald (inc. korting): ");
+        System.out.println("Betaald (inc. korting): " + Bereken.berekenTotaalPrijsMetKorting(artikelList));
     }
 
     private int telVoorkomen (Artikel artikel, List<Artikel> artikels) {

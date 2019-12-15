@@ -99,6 +99,11 @@ public class InstellingenTicketDecoraterPane extends GridPane {
                 }
                 PropertiesLoadSave.save(footerAddons.getValue().toString(), "FOOTER");
             }
+            Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
+            confirmation.setTitle("INFO");
+            confirmation.setHeaderText("Wijzigingen opgeslagen");
+            confirmation.setContentText("Wijzigingen opgeslagen, herstart het programma voor de aanpassingen.");
+            confirmation.showAndWait();
         });
     }
 

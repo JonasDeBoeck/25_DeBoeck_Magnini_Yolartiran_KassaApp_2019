@@ -3,6 +3,7 @@ package model;
 import database.DatabaseException;
 import database.LoadSaveFactory;
 import database.LoadSaveStrategy;
+import database.PropertiesLoadSave;
 
 public class KortingStrategyFactory {
     private static KortingStrategyFactory uniqueFactory;
@@ -29,12 +30,14 @@ public class KortingStrategyFactory {
                 soort = "GroepsKorting";
         }
         KortingStrategy kortingStrategy = null;
-        try {
-            Class kortingStrategyClass = Class.forName("model." + soort);
-            Object kortingStrategyObject = kortingStrategyClass.newInstance();
-            kortingStrategy = (KortingStrategy) kortingStrategyObject;
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException  e) {
-            throw new DatabaseException();
+        if (!PropertiesLoadSave.load("SOORT").equals("GEEN")) {
+            try {
+                Class kortingStrategyClass = Class.forName("model." + soort);
+                Object kortingStrategyObject = kortingStrategyClass.newInstance();
+                kortingStrategy = (KortingStrategy) kortingStrategyObject;
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+                throw new DatabaseException();
+            }
         }
         return kortingStrategy;
     }

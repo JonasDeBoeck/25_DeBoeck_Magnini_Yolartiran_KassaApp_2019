@@ -27,7 +27,12 @@ public class DrempelKorting implements KortingStrategy {
     private void berekenProcent (List<Artikel> lijst) {
         for (Artikel a : lijst) {
             if (a.getPrijs() >= Double.parseDouble(PropertiesLoadSave.load("DREMPEL"))) {
-                a.setKorting(a.getPrijs() - ((a.getPrijs()/100)*Integer.parseInt(PropertiesLoadSave.load("GETAL"))));
+                double korting = a.getPrijs() - ((a.getPrijs() / 100) * Integer.parseInt(PropertiesLoadSave.load("GETAL")));
+                if (a.getPrijs() > korting) {
+                    a.setKorting(korting);
+                } else {
+                    a.setKorting(a.getPrijs());
+                }
             }
         }
     }
@@ -35,7 +40,11 @@ public class DrempelKorting implements KortingStrategy {
     private void berekenEuro (List<Artikel> lijst) {
         for (Artikel a : lijst) {
             if (a.getPrijs() >= Double.parseDouble(PropertiesLoadSave.load("DREMPEL"))) {
-                a.setKorting(Integer.parseInt(PropertiesLoadSave.load("GETAL")));
+                if (a.getPrijs() > Double.parseDouble(PropertiesLoadSave.load("GETAL"))) {
+                    a.setKorting(Integer.parseInt(PropertiesLoadSave.load("GETAL")));
+                } else {
+                    a.setKorting(a.getPrijs());
+                }
             }
         }
     }

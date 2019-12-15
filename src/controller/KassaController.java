@@ -3,6 +3,7 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Artikel;
+import model.Bereken;
 import model.Winkel;
 import model.Winkelwagentje;
 import view.KassaView;
@@ -69,12 +70,7 @@ public class KassaController implements Subject{
     }
 
     public double updateTotaalPrijs() {
-        double totaal1 = 0;
-        Winkelwagentje winkelwagentje = model.getWinkelwagentje();
-        for(Artikel a : winkelwagentje.getArtikels()){
-            totaal1 += a.getPrijs();
-        }
-        return totaal1;
+        return Bereken.berekenTotaalPrijs(model.getWinkelwagentje().getArtikels());
     }
 
     public void deleteFromCart(Artikel artikel) {
@@ -111,13 +107,16 @@ public class KassaController implements Subject{
         model.setOffHold();
     }
 
-    public double getTotaalPrijsMetKorting() {
+    public void setKorting() {
         model.setKorting();
+    }
+
+    public double getTotaalPrijsMetKorting() {
         return model.getTotaalPrijsMetKorting();
     }
 
     public double getTotaleKorting() {
-        return updateTotaalPrijs() - getTotaalPrijsMetKorting();
+        return Bereken.berekenTotaalKorting(model.getWinkelwagentje().getArtikels());
     }
 
     public boolean legeOnHold(){
