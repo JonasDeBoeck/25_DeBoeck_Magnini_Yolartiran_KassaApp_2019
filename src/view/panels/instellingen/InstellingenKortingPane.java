@@ -14,9 +14,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 public class InstellingenKortingPane extends GridPane {
-
+    //TODO Bij geen korting alles weg laten bij het opstarten?
     private KassaController controller;
-
     private Label korting = new Label("Korting Instellingen:");
     private Label getalLabel = new Label("Kies hoevel korting u exact wenst te geven.");
     private Slider sliderGetal = new Slider();
@@ -81,7 +80,7 @@ public class InstellingenKortingPane extends GridPane {
             String soort = PropertiesLoadSave.load("SOORT");
             soort = soort.substring(0,1).toUpperCase() + soort.substring(1).toLowerCase();
             switch (soort) {
-                case "Drempel":
+                case "Grens":
                     grensKorting.setSelected(true);
                     break;
                 case "Groep":
@@ -93,15 +92,25 @@ public class InstellingenKortingPane extends GridPane {
                 default:
                     geenKorting.setSelected(true);
             }
-            sliderGetal.setValue(Double.parseDouble(PropertiesLoadSave.load("GETAL")));
-            getal.setText(PropertiesLoadSave.load("GETAL"));
-            String type = PropertiesLoadSave.load("TYPE");
-            type = type.substring(0, 1).toUpperCase() + type.substring(1).toLowerCase();
-            comboBoxKortingenSoorten.getSelectionModel().select(type);
+            if (!PropertiesLoadSave.load("SOORT").equals("GEEN")) {
+                sliderGetal.setValue(Double.parseDouble(PropertiesLoadSave.load("GETAL")));
+                getal.setText(PropertiesLoadSave.load("GETAL"));
+                String type = PropertiesLoadSave.load("TYPE");
+                type = type.substring(0, 1).toUpperCase() + type.substring(1).toLowerCase();
+                comboBoxKortingenSoorten.getSelectionModel().select(type);
+            }
         }
 
         categorieKeuze.setVisible(groepKorting.isSelected());
         invoerGrens.setVisible(grensKorting.isSelected());
+
+        if (groepKorting.isSelected()) {
+            categorieKeuze.getSelectionModel().select(PropertiesLoadSave.load("CATEGORIE"));
+        }
+
+        if (grensKorting.isSelected()) {
+            invoerGrens.setText(PropertiesLoadSave.load("DREMPEL"));
+        }
 
         sliderGetal.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov,
