@@ -22,6 +22,7 @@ public class ExcelAdapter implements LoadSaveStrategy {
         excelPlugin = new ExcelPlugin();
     }
 
+    //Leest het excel bestand in
     @Override
     public Map<String, Artikel> load(String filename) {
         ArtikelFactory factory = ArtikelFactory.getInstance();
@@ -42,6 +43,7 @@ public class ExcelAdapter implements LoadSaveStrategy {
         return artikels;
     }
 
+    //Schrijft een lijst van artikels weg naar het excel bestand
     @Override
     public void save(String filename, Map<String, Artikel> artikels) {
         try {

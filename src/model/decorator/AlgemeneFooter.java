@@ -13,6 +13,7 @@ public class AlgemeneFooter implements TicketDecorator {
         this.message = message;
     }
 
+    //Print het ticket met een extra boodschap
     @Override
     public void printTicket(List<Artikel> artikelList) {
         ticket.printTicket(artikelList);

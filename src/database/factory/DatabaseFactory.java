@@ -15,6 +15,7 @@ public class DatabaseFactory {
         return uniqueFactory;
     }
 
+    //Returned de juiste Database aan de hand van de waarde in de properties file, de switch zorgt er voor dat het juiste object aangemaakt wordt
     public ArtikelDBStrategy getDatabase(String type) {
         String db;
         switch (type) {

@@ -9,6 +9,7 @@ import java.util.Properties;
 
 public class PropertiesLoadSave {
 
+    //Returned de value van de property met waarde 'property'
     public static String load(String property){
         String db = "";
         Properties prop = new Properties();
@@ -25,6 +26,7 @@ public class PropertiesLoadSave {
         return db;
     }
 
+    //Schrijft de value met waarde 'keuze' weg naar de property met waarde 'property'
     public static void save(String keuze, String property) {
 
         try {

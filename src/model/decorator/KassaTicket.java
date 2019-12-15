@@ -11,6 +11,7 @@ public class KassaTicket implements Ticket {
 
     public KassaTicket () {}
 
+    //Print het ticket
     @Override
     public void printTicket(List<Artikel> artikelList) {
         Set<Artikel> mandje = new HashSet<>(artikelList);
@@ -25,6 +26,7 @@ public class KassaTicket implements Ticket {
         System.out.println("Betaald (inc. korting): " + Bereken.berekenTotaalPrijsMetKorting(artikelList));
     }
 
+    //Telt het aantal voorkomens van een artikel in een lijst
     private int telVoorkomen (Artikel artikel, List<Artikel> artikels) {
         int count = 0;
         for (Artikel art : artikels) {

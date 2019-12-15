@@ -6,13 +6,15 @@ import model.Artikel;
 import model.Bereken;
 import model.Winkel;
 import model.Winkelwagentje;
+import model.observer.Observer;
+import model.observer.Subject;
 import view.KassaView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class KassaController implements Subject{
+public class KassaController implements Subject {
     private KassaView view;
     private Winkel model;
     private List<Observer>observers;
@@ -77,6 +79,7 @@ public class KassaController implements Subject{
         model.deleteFromCart(artikel);
     }
 
+    //Notified de geregistreerde observers
     @Override
     public void notifyObservers() {
         for (Observer observer : observers) {
@@ -84,7 +87,7 @@ public class KassaController implements Subject{
         }
     }
 
-
+    //Notified de geregistreerde observers
     @Override
     public void notifyObserversAfsluit() {
         for (Observer observer : observers){
@@ -92,16 +95,19 @@ public class KassaController implements Subject{
         }
     }
 
+    //Registreer observer
     @Override
     public void registerObserver(Observer observer) {
         this.observers.add(observer);
     }
 
+    //Zet winkelkarretje on hold
     public void zetOnHold(){
         counter = 0;
         model.setOnHold();
     }
 
+    //Haal winkelkarretje of hold
     public void zetOffHold(){
         counter = 0;
         model.setOffHold();
@@ -119,6 +125,7 @@ public class KassaController implements Subject{
         return Bereken.berekenTotaalKorting(model.getWinkelwagentje().getArtikels());
     }
 
+    //Returned true als het on hold winkelkarretje leeg is
     public boolean legeOnHold(){
         return model.getOnHoldWinkelwagentje().getArtikels().isEmpty();
     }
@@ -143,6 +150,7 @@ public class KassaController implements Subject{
         return model.getState().toString();
     }
 
+    //Print de kassa bon
     public void printKassaBon () {
         model.printTicket();
     }

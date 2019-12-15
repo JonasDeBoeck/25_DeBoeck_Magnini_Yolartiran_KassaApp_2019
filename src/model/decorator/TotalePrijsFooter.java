@@ -10,6 +10,8 @@ public class TotalePrijsFooter implements TicketDecorator {
     public TotalePrijsFooter (Ticket ticket) {
         this.ticket = ticket;
     }
+
+    //Print het ticket met extra waarden
     @Override
     public void printTicket(List<Artikel> artikelList) {
         ticket.printTicket(artikelList);

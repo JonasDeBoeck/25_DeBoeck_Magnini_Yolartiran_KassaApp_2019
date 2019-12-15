@@ -12,6 +12,7 @@ public class BTWFooter implements TicketDecorator {
         this.ticket = ticket;
     }
 
+    //Print het ticket met extra waarden
     @Override
     public void printTicket(List<Artikel> artikelList) {
         ticket.printTicket(artikelList);

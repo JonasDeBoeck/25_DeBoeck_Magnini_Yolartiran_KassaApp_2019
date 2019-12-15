@@ -19,6 +19,7 @@ public class GroepsKorting implements KortingStrategy {
         setType(PropertiesLoadSave.load("TYPE"));
     }
 
+    //Delegeert de te berekenen korting door naar de juiste methode voor een bepaald type
     public void berekenPrijs(List<Artikel> lijst){
          switch (this.type) {
              case "Euro":

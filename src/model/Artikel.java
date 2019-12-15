@@ -22,6 +22,7 @@ public class Artikel {
         return artikelId + "," + naam + "," + artikelCategorie.getArtikelCategorieAlsString() + "," + parsePrijs(prijs) + "," + aantalInStock;
     }
 
+    //Returned een lijst van alle waarden van een artikel, die dan gebruikt kan worden bij het wegschrijven naar excel
     public ArrayList<String> lijstArtikel() {
         ArrayList<String> lijst = new ArrayList<>();
         lijst.add(this.artikelId);

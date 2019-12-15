@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate {
 
+    //Leest de text file in
     @Override
     public Map<String, Artikel> read(File toRead) {
         HashMap<String, Artikel> artikels = new HashMap<>();
@@ -42,6 +43,7 @@ public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate {
         return artikels;
     }
 
+    //Schrijft de lijst weg naar een text file
     @Override
     public void write(File toWrite, Map<String, Artikel> artikels) {
         try (Writer w = new OutputStreamWriter(new FileOutputStream(toWrite), StandardCharsets.UTF_8); PrintWriter writer = new PrintWriter(w)) {

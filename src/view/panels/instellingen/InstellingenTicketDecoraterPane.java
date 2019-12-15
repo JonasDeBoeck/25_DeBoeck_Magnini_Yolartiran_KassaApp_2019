@@ -52,6 +52,7 @@ public class InstellingenTicketDecoraterPane extends GridPane {
         this.setVgap(8);
         this.setHgap(10);
 
+        //Alles wat in de Properties file aangeduid staat wordt aangeduid bij het opstartenb
         header.setSelected(PropertiesLoadSave.propertyBestaat("HEADER"));
         footer.setSelected(PropertiesLoadSave.propertyBestaat("FOOTER"));
 

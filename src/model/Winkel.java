@@ -56,6 +56,7 @@ public class Winkel {
         return winkelwagentje.getState();
     }
 
+    //Overschrijft de huidige stock met de nieuwe stock
     public void save(String filename, List<Artikel> cart) {
         for (Artikel artikel : cart) {
             artikels.get(artikel.getArtikelId()).setAantalInStock(artikel.getAantalInStock() - 1);
@@ -64,8 +65,10 @@ public class Winkel {
         winkelwagentje.setState(this.winkelwagentje.getActief());
     }
 
+    //Leest producten in
     public void load(String filename){db.getAll(filename);}
 
+    //Print de kassabon voor de huidige winkelkar
     public void printTicket () {
         kassabon.printTicket(this.winkelwagentje.getArtikels());
     }

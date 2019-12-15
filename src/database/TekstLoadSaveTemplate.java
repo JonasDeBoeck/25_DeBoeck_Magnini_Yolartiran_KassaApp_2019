@@ -8,12 +8,14 @@ import java.util.Map;
 
 public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy {
 
+    //Template methode voor het inlezen
     public Map<String, Artikel> load(String filename) {
         String fullPath = fullPathName(filename);
         File toRead = pathToFile(fullPath);
         return read(toRead);
     }
 
+    //Template methode voor het wegschrijven
     public void save(String filename, Map<String, Artikel> artikels) {
         String fullPath = fullPathName(filename);
         File toWrite = pathToFile(fullPath);

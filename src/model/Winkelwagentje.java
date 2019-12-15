@@ -11,8 +11,6 @@ public class Winkelwagentje implements Serializable{
     private State actief, inactief, onHold, betaald, geannuleerd, state;
     private List<Artikel> artikels;
 
-
-
     public Winkelwagentje () {
         this.artikels = new ArrayList<>();
         actief = new Actief(this);

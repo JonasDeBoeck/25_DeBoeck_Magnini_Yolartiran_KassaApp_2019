@@ -13,6 +13,7 @@ public class DatumTijdHeader implements TicketDecorator {
         this.ticket = ticket;
     }
 
+    //Print het ticket met extra waarden
     @Override
     public void printTicket(List<Artikel> artikelList) {
         System.out.println("Datum: " + LocalDate.now() + " Tijd: " + LocalTime.now());

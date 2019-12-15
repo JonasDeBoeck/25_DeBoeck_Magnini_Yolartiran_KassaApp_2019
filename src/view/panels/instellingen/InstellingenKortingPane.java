@@ -76,6 +76,7 @@ public class InstellingenKortingPane extends GridPane {
         this.setVgap(8);
         this.setHgap(10);
 
+        //Alles wat in de Properties file aangeduid staat wordt aangeduid bij het opstartenb
         if (PropertiesLoadSave.propertyBestaat("SOORT")) {
             String soort = PropertiesLoadSave.load("SOORT");
             soort = soort.substring(0,1).toUpperCase() + soort.substring(1).toLowerCase();

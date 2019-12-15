@@ -1,4 +1,4 @@
-package controller;
+package model.observer;
 
 import javafx.collections.ObservableList;
 import model.Artikel;

@@ -3,6 +3,7 @@ package model;
 import java.util.List;
 
 public class Bereken {
+    //Berekent totaalprijs ex. korting
     public static double berekenTotaalPrijs(List<Artikel> artikels) {
         double totaal = 0;;
         for(Artikel a : artikels){
@@ -11,6 +12,7 @@ public class Bereken {
         return totaal;
     }
 
+    //Berekend totale korting
     public static double berekenTotaalKorting(List<Artikel> artikels) {
         double korting = 0;
         for (Artikel artikel : artikels) {
@@ -19,10 +21,12 @@ public class Bereken {
         return korting;
     }
 
+    //Berekent totale prijs inc. korting
     public static double berekenTotaalPrijsMetKorting(List<Artikel> artikels) {
         return berekenTotaalPrijs(artikels) - berekenTotaalKorting(artikels);
     }
 
+    //Berekent de totale BTW
     public static double berekenBTW(List<Artikel> artikels) {
         double btw = 0;
         for (Artikel artikel : artikels) {
@@ -31,6 +35,7 @@ public class Bereken {
         return btw;
     }
 
+    //Berekent de totale prijs ex. BTW
     public static double berekenTotaalPrijsExBTW(List<Artikel> artikels) {
         double prijs = 0;
         for (Artikel artikel : artikels) {

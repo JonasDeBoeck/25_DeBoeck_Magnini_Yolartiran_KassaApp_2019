@@ -13,6 +13,7 @@ public class AlgemeneHeader implements TicketDecorator{
         tekst = algemeneHeaderTekst;
     }
 
+    //Print het ticket met een extra boodschap
     @Override
     public void printTicket(List<Artikel> artikelList) {
         System.out.println(tekst);

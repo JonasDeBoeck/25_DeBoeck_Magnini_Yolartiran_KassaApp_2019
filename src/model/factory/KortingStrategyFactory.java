@@ -15,6 +15,7 @@ public class KortingStrategyFactory {
         return uniqueFactory;
     }
 
+    //Returned de juiste korting aan de hand van de waarde in de properties file, de switch zorgt er voor dat het juiste object wordt aangemaakt
     public KortingStrategy getStrategy(String type) {
         String soort = "";
         switch (type) {

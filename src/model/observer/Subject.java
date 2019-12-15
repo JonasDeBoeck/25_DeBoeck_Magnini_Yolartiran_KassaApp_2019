@@ -1,4 +1,4 @@
-package controller;
+package model.observer;
 
 public interface Subject {
     void notifyObservers ();

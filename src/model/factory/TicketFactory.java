@@ -15,6 +15,7 @@ public class TicketFactory {
         return uniqueFactory;
     }
 
+    //Returned het juiste ticket object aan de hand van de waarde in de properties file, switch zorgt er voor dat de juiste addons worden toegevoegd
     public Ticket getTicket () {
         Ticket ticket = new KassaTicket();
         if (!PropertiesLoadSave.load("HEADER").equals("")) {

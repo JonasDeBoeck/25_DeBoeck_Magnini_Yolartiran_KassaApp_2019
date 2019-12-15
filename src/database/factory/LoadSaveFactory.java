@@ -15,6 +15,7 @@ public class LoadSaveFactory {
         return uniqueFactory;
     }
 
+    //Returned de juiste LoadSaveStrategy aan de hand van de waarde in de properties file, de switch zorgt er voor dat het juiste object aangemaakt wordt
     public LoadSaveStrategy getStrategy(String type) {
         String strategy = "";
         switch (type) {

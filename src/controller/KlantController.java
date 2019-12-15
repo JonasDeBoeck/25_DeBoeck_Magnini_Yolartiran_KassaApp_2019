@@ -5,13 +5,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import model.Artikel;
 import model.Winkel;
+import model.observer.Observer;
 import view.KlantMainPane;
-import view.KlantView;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.Map;
 
 public class KlantController implements Observer {
     private KlantMainPane view;
@@ -21,6 +16,7 @@ public class KlantController implements Observer {
         setModel(model);
     }
 
+    //Update de waardes in de view
     @Override
     public void update(ObservableList<Artikel> artikels, String prijs) {
         ObservableMap<Artikel, Integer> winkelwagentje = FXCollections.observableHashMap();
@@ -34,6 +30,7 @@ public class KlantController implements Observer {
         view.update(winkelwagentje, prijs);
     }
 
+    //Update de waardes in de view
     @Override
     public void updateAfsluit(String totalePrijs, String korting, String totalePrijsMetKorting) {
         view.updateAfsluit(totalePrijs, korting, totalePrijsMetKorting);
