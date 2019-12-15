@@ -89,7 +89,7 @@ public class Artikel {
         boolean result = false;
         if (o instanceof Artikel) {
             Artikel a = (Artikel) o;
-            if (this.artikelId.equals(((Artikel) o).artikelId)) {
+            if (this.artikelId.equals(a.artikelId)) {
                 result = true;
             }
         }

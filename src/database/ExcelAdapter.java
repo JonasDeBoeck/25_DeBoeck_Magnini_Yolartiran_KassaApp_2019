@@ -1,11 +1,12 @@
 package database;
 
+import database.strategy.loadSaveStrategy.LoadSaveStrategy;
 import excel.ExcelPlugin;
 import javafx.scene.control.Alert;
 import jxl.read.biff.BiffException;
 import jxl.write.WriteException;
 import model.Artikel;
-import model.ArtikelFactory;
+import model.factory.ArtikelFactory;
 
 import java.io.File;
 import java.io.IOException;

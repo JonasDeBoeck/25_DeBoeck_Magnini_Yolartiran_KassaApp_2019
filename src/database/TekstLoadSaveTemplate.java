@@ -1,11 +1,12 @@
 package database;
 
+import database.strategy.loadSaveStrategy.LoadSaveStrategy;
 import model.Artikel;
 
 import java.io.File;
 import java.util.Map;
 
-public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy{
+public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy {
 
     public Map<String, Artikel> load(String filename) {
         String fullPath = fullPathName(filename);

@@ -2,7 +2,6 @@ package application;
 	
 import controller.KassaController;
 import controller.KlantController;
-import database.DatabaseContext;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.Winkel;

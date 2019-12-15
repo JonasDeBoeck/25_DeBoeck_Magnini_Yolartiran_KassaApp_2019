@@ -1,7 +1,11 @@
 package model;
 
-import database.DatabaseContext;
+import database.strategy.DatabaseContext;
 import database.PropertiesLoadSave;
+import model.decorator.Ticket;
+import model.factory.TicketFactory;
+import model.kortingStrategy.KortingContext;
+import model.state.State;
 
 import java.util.*;
 
