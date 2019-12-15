@@ -144,5 +144,7 @@ public class KassaController implements Subject{
         return model.getState().toString();
     }
 
-
+    public void printKassaBon () {
+        model.printTicket();
+    }
 }

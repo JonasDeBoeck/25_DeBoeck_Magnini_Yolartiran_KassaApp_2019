@@ -10,12 +10,15 @@ public class Winkel {
     private Winkelwagentje winkelwagentje, onHoldWinkelwagentje;
     private DatabaseContext db;
     private KortingContext kortingen;
+    private Ticket kassabon;
 
     public Winkel () {
         setDb(new DatabaseContext());
         setKortingen(new KortingContext());
         this.artikels = new HashMap<>();
         this.winkelwagentje = new Winkelwagentje();
+        TicketFactory factory = TicketFactory.getInstance();
+        this.kassabon = factory.getTicket();
         winkelwagentje.setState(this.winkelwagentje.getActief());
         this.onHoldWinkelwagentje = new Winkelwagentje();
         artikels.putAll(db.getAll("artikel." + PropertiesLoadSave.load("DATABASE")));
@@ -58,6 +61,10 @@ public class Winkel {
     }
 
     public void load(String filename){db.getAll(filename);}
+
+    public void printTicket () {
+        kassabon.printTicket(this.winkelwagentje.getArtikels());
+    }
 
     private void setDb(DatabaseContext db) {
         this.db = db;
@@ -111,18 +118,5 @@ public class Winkel {
 
     public double getTotaalPrijsMetKorting() {
         return winkelwagentje.getTotaalPrijsMetKorting();
-    }
-
-    //6 spaties, 3 spaties, 2 spaties
-    public void printTicket () {
-        Set<Artikel> mandje = new HashSet<>(winkelwagentje.getArtikels());
-        String tussenLijn = "**********************************" ;
-        String ticket = "Omschrijving      Aantal   Prijs  \n";
-        System.out.println(ticket + tussenLijn);
-        for (Artikel artikel : mandje) {
-            String art = "%-18s%-8s%s%n";
-            System.out.printf(art, artikel.getNaam(), winkelwagentje.getCount(artikel), artikel.getPrijs());
-        }
-        System.out.println(tussenLijn);
     }
 }

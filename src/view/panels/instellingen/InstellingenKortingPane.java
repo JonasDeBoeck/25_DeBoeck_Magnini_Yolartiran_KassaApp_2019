@@ -13,8 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-import java.awt.*;
-
 public class InstellingenKortingPane extends GridPane {
 
     private KassaController controller;

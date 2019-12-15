@@ -76,14 +76,4 @@ public class Winkelwagentje implements Serializable{
     public State getGeannuleerd() {
         return geannuleerd;
     }
-
-    public int getCount(Artikel artikel) {
-        int count = 0;
-        for (Artikel artikel1 : artikels) {
-            if (artikel1.equals(artikel)) {
-                count++;
-            }
-        }
-        return count;
-    }
 }

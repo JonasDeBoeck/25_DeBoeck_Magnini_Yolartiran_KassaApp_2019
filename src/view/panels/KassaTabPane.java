@@ -143,6 +143,7 @@ public class KassaTabPane extends GridPane {
 
         betaal.setOnAction(event -> {
             controller.setStateOnBetaald();
+            controller.printKassaBon();
             controller.clearCart();
             controller.notifyObservers();
             tabel.setItems(controller.getWinkelWagentje());
