@@ -57,7 +57,7 @@ public class InstellingenDatabasePane extends GridPane {
 
         /*Lay-out voor KORTING instellingen*/
 
-        //Alles wat in de Properties file aangeduid staat wordt aangeduid bij het opstartenb
+        //Alles wat in de Properties file aangeduid staat wordt aangeduid bij het opstarten
         if (PropertiesLoadSave.propertyBestaat("DATABASE")) {
             comboBox.getSelectionModel().select(PropertiesLoadSave.load("DATABASE"));
         }

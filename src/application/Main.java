@@ -2,6 +2,7 @@ package application;
 	
 import controller.KassaController;
 import controller.KlantController;
+import controller.LogController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.Winkel;
@@ -13,9 +14,11 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		Winkel model = new Winkel();
 		KassaController kassaController = new KassaController(model);
+		LogController logController = new LogController(model);
 		KlantController klantController = new KlantController(model);
 		kassaController.registerObserver(klantController);
-		new KassaView(kassaController);
+		kassaController.registerObserver(logController);
+		new KassaView(kassaController, logController);
 		new KlantView(klantController);
 	}
 	

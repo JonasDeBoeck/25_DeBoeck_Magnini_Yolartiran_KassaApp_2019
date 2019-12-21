@@ -90,7 +90,7 @@ public class Winkel {
     }
 
     public void clearCart () {
-        this.winkelwagentje.maakLeeg();
+        this.winkelwagentje = new Winkelwagentje();
     }
 
     public void deleteFromCart(Artikel artikel) {
