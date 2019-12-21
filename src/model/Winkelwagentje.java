@@ -35,10 +35,28 @@ public class Winkelwagentje implements Serializable{
     }
 
     public void maakLeeg () {
-        System.out.println(state.toString());
         this.state.maakLeeg(artikels);
     }
 
+    public void setActief() {
+        setState(actief);
+    }
+
+    public void setBetaald() {
+        setState(betaald);
+    }
+
+    public void setGeannuleerd() {
+        setState(geannuleerd);
+    }
+
+    public void setOnHold() {
+        setState(onHold);
+    }
+
+    public void setInactief() {
+        setState(inactief);
+    }
 
     public List<Artikel> getArtikels () {
         return this.artikels;

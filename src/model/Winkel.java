@@ -62,7 +62,7 @@ public class Winkel {
             artikels.get(artikel.getArtikelId()).setAantalInStock(artikel.getAantalInStock() - 1);
         }
         db.saveAll(filename, artikels);
-        winkelwagentje.setState(this.winkelwagentje.getActief());
+        winkelwagentje.setActief();
     }
 
     //Leest producten in
@@ -100,13 +100,13 @@ public class Winkel {
     public void setOnHold(){
         onHoldWinkelwagentje.getArtikels().addAll(this.winkelwagentje.getArtikels());
         clearCart();
-        onHoldWinkelwagentje.setState(this.winkelwagentje.getOnHold());
+        winkelwagentje.setOnHold();
     }
 
     public void setOffHold(){
         winkelwagentje.getArtikels().addAll(this.onHoldWinkelwagentje.getArtikels());
         this.onHoldWinkelwagentje.getArtikels().clear();
-        winkelwagentje.setState(this.winkelwagentje.getActief());
+        winkelwagentje.setActief();
     }
 
     public void setKorting() {
@@ -121,8 +121,7 @@ public class Winkel {
 
     public void clearOnHold(){
         this.onHoldWinkelwagentje.getArtikels().clear();
-        winkelwagentje.setState(this.winkelwagentje.getGeannuleerd());
-        System.out.println(this.winkelwagentje.getState().toString());
+        winkelwagentje.setGeannuleerd();
     }
 
     public double getTotaalPrijsMetKorting() {

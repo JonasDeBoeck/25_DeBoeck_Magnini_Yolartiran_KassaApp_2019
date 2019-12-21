@@ -159,6 +159,7 @@ public class KassaTabPane extends GridPane {
             afsluit.setVisible(true);
             korting.setVisible(false);
             totaalMetKorting.setVisible(false);
+            annuleer.setVisible(false);
             updateTotaal();
         });
 

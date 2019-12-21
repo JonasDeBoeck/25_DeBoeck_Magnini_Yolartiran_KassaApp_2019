@@ -1,12 +1,15 @@
 package view.panels;
 
 import controller.KassaController;
+import controller.OverviewController;
+import database.PropertiesLoadSave;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 import model.Artikel;
@@ -15,69 +18,53 @@ import java.util.Map;
 
 
 public class ProductOverviewPane extends GridPane {
-	//TODO Code vereenvoudigen + interactief veranderen na betaling
 	private TableView<Artikel> table;
-	private KassaController controller;
+	private OverviewController controller;
 	
-	public ProductOverviewPane(KassaController controller) {
+	public ProductOverviewPane(OverviewController controller) {
 		setController(controller);
-
+		controller.setView(this);
+		table = new TableView<>();
 		this.setPadding(new Insets(10,10,10,10));
 		this.setVgap(8);
 		this.setHgap(10);
 		this.add(new Label("Products:"), 0, 0, 1, 1);
 
-		TableColumn<Map.Entry<String, Artikel>, String> artikelID = new TableColumn<>("Artikel ID");
-		artikelID.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<String, Artikel>, String>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(TableColumn.CellDataFeatures<Map.Entry<String, Artikel>, String> entryStringCellDataFeatures) {
-				return new SimpleStringProperty(entryStringCellDataFeatures.getValue().getKey());
-			}
-		});
+		TableColumn<Artikel,String> articleID = new TableColumn<>("artikel code");
+		articleID.setCellValueFactory(new PropertyValueFactory<>("artikelId"));
 
-		TableColumn<Map.Entry<String, Artikel>, String> naam = new TableColumn<>("Naam");
-		naam.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<String, Artikel>, String>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(TableColumn.CellDataFeatures<Map.Entry<String, Artikel>, String> entryStringCellDataFeatures) {
-				return new SimpleStringProperty(entryStringCellDataFeatures.getValue().getValue().getNaam());
-			}
-		});
+		TableColumn<Artikel,String> naam = new TableColumn<>("naam");
+		naam.setCellValueFactory(new PropertyValueFactory<>("naam"));
 
-		TableColumn<Map.Entry<String, Artikel>, String> prijs = new TableColumn<>("Prijs");
-		prijs.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<String, Artikel>, String>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(TableColumn.CellDataFeatures<Map.Entry<String, Artikel>, String> entryStringCellDataFeatures) {
-				return new SimpleStringProperty(String.valueOf(entryStringCellDataFeatures.getValue().getValue().getPrijs()));
-			}
-		});
+		TableColumn<Artikel,String> categorie = new TableColumn<>("artikel categorie");
+		categorie.setCellValueFactory(new PropertyValueFactory<>("artikelCategorie"));
 
-		TableColumn<Map.Entry<String, Artikel>, String> aantalInStock = new TableColumn<>("Aantal in Stock");
-		aantalInStock.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<String, Artikel>, String>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(TableColumn.CellDataFeatures<Map.Entry<String, Artikel>, String> entryStringCellDataFeatures) {
-				return new SimpleStringProperty(String.valueOf(entryStringCellDataFeatures.getValue().getValue().getAantalInStock()));
-			}
-		});
+		TableColumn<Artikel,String> prijs = new TableColumn<>("Prijs");
+		prijs.setCellValueFactory(new PropertyValueFactory<>("prijs"));
 
-		TableColumn<Map.Entry<String, Artikel>, String> categorie = new TableColumn<>("Categorie");
-		categorie.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<String, Artikel>, String>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(TableColumn.CellDataFeatures<Map.Entry<String, Artikel>, String> entryStringCellDataFeatures) {
-				return new SimpleStringProperty(String.valueOf(entryStringCellDataFeatures.getValue().getValue().getArtikelCategorie()));
-			}
-		});
+		TableColumn<Artikel,String> stock = new TableColumn<>("Stock");
+		stock.setCellValueFactory(new PropertyValueFactory<>("aantalInStock"));
 
-		ObservableList<Map.Entry<String, Artikel>> items = FXCollections.observableArrayList(controller.getProducten().entrySet());
-		final TableView<Map.Entry<String, Artikel>> table = new TableView<>(items);
+		table.getColumns().add(articleID);
+		table.getColumns().add(naam);
+		table.getColumns().add(categorie);
+		table.getColumns().add(prijs);
+		table.getColumns().add(stock);
 
-		table.getColumns().setAll(artikelID, naam, prijs, aantalInStock, categorie);
-		table.getSortOrder().add(naam);
+		table.getItems().addAll(controller.getProducten().values());
 		table.sort();
 		this.add(table, 0,1,1,2);
 
 	}
 
-	public void setController(KassaController controller) {
+	public void setController(OverviewController controller) {
 		this.controller = controller;
 	}
+
+	public void updateStock(){
+        controller.load("artikel." + PropertiesLoadSave.load("DATABASE"));
+        table.getItems().setAll(controller.getProducten().values());
+    }
+
+
 }

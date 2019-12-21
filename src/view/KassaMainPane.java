@@ -3,6 +3,7 @@ package view;
 
 import controller.KassaController;
 import controller.LogController;
+import controller.OverviewController;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
@@ -14,13 +15,14 @@ import view.panels.instellingen.InstellingenMainPane;
 public class KassaMainPane extends BorderPane {
     private KassaController controller;
     private LogController logger;
+    private OverviewController overviewController;
 
-	public KassaMainPane(KassaController controller, LogController logger){
+	public KassaMainPane(KassaController controller, LogController logger, OverviewController overviewController){
 		setController(controller);
 	    TabPane tabPane = new TabPane(); 	    
         KassaTabPane tabKassa = new KassaTabPane(this.controller);
         Tab kassaTab = new Tab("Kassa", tabKassa);
-        ProductOverviewPane productOverviewPane = new ProductOverviewPane(this.controller);
+        ProductOverviewPane productOverviewPane = new ProductOverviewPane(overviewController);
         Tab artikelTab = new Tab("Artikelen",productOverviewPane);
         InstellingenMainPane instellingPane = new InstellingenMainPane(this.controller);
         Tab instellingenTab = new Tab("Instellingen", instellingPane);
