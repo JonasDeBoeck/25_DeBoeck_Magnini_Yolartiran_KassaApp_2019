@@ -5,6 +5,10 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 
+
+/**
+ * @Author Thibault Magnini
+ */
 public class InstellingenMainPane extends BorderPane{
 
 

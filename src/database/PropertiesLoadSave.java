@@ -6,6 +6,9 @@ import java.io.*;
 
 import java.util.Properties;
 
+/**
+ * @Author Thibault Magnini
+ * */
 
 public class PropertiesLoadSave {
 

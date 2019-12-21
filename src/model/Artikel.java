@@ -3,6 +3,10 @@ package model;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * @Author Jonas De Boeck
+ * */
+
 public class Artikel {
     private String artikelId, naam;
     private double prijs, korting;

@@ -3,6 +3,10 @@ package model.factory;
 import database.DatabaseException;
 import model.kortingStrategy.KortingStrategy;
 
+/**
+ * @Author Jonas De Boeck, Sinan Yolartiran
+ * */
+
 public class KortingStrategyFactory {
     private static KortingStrategyFactory uniqueFactory;
 

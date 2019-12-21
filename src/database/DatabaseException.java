@@ -1,5 +1,9 @@
 package database;
 
+
+/**
+ * @Author Jonas De Boeck
+ * */
 public class DatabaseException extends RuntimeException {
     public DatabaseException() {
         super();

@@ -4,6 +4,10 @@ import model.Artikel;
 
 import java.util.List;
 
+/**
+ * @Author Jonas De Boeck
+ * */
+
 public class TotalePrijsFooter implements TicketDecorator {
     private Ticket ticket;
 

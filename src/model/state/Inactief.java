@@ -5,6 +5,10 @@ import model.Winkelwagentje;
 
 import java.util.List;
 
+/**
+ * @Author Thibault Magnini
+ * */
+
 public class Inactief implements State {
 
     private Winkelwagentje winkelwagentje;

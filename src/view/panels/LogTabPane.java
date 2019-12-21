@@ -12,6 +12,10 @@ import model.Winkelwagentje;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * @Author Jonas De Boeck
+ */
+
 public class LogTabPane extends GridPane {
     private LogController controller;
     private TableView tableView;

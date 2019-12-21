@@ -10,6 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.geometry.Insets;
 
+/**
+ * @Author Jonas De Boeck
+*/
 public class InstellingenTicketDecoraterPane extends GridPane {
 
     private Label toevoeging;

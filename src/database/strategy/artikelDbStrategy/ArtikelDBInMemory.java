@@ -7,6 +7,10 @@ import model.Artikel;
 
 import java.util.Map;
 
+/**
+ * @Author Jonas De Boeck
+ * */
+
 public class ArtikelDBInMemory implements ArtikelDBStrategy {
     private LoadSaveStrategy loadSaveStrategy;
 

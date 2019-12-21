@@ -16,7 +16,9 @@ import model.Artikel;
 
 import java.util.Map;
 
-
+/**
+@Author Thibault Magnini
+*/
 public class ProductOverviewPane extends GridPane {
 	private TableView<Artikel> table;
 	private OverviewController controller;

@@ -11,6 +11,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * @Author Jonas De Boeck, Sinan Yolartiran
+ * */
+
 public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate {
 
     //Leest de text file in

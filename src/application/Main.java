@@ -10,6 +10,9 @@ import model.Winkel;
 import view.KassaView;
 import view.KlantView;
 
+/**
+ * @Author Jonas De Boeck, Thibault Magnini
+ * */
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {

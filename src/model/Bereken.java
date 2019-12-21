@@ -2,6 +2,9 @@ package model;
 
 import java.util.List;
 
+/**
+ * @Author Jonas De Boeck
+ * */
 public class Bereken {
     //Berekent totaalprijs ex. korting
     public static double berekenTotaalPrijs(List<Artikel> artikels) {

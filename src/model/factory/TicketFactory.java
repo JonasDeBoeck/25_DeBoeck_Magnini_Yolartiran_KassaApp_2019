@@ -2,6 +2,9 @@ package model.factory;
 
 import database.PropertiesLoadSave;
 import model.decorator.*;
+/**
+ * @Author Jonas De Boeck
+ * */
 
 public class TicketFactory {
     private static TicketFactory uniqueFactory;

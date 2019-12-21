@@ -3,6 +3,10 @@ package database.factory;
 import database.strategy.artikelDbStrategy.ArtikelDBStrategy;
 import database.DatabaseException;
 
+/**
+ * @Author Jonas De Boeck, Sinan Yolartiran
+ * */
+
 public class DatabaseFactory {
     private static DatabaseFactory uniqueFactory;
 

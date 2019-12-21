@@ -7,6 +7,10 @@ import model.Artikel;
 
 import java.util.Map;
 
+/**
+ * @Author Jonas De Boeck
+ * */
+
 public class DatabaseContext {
     private ArtikelDBStrategy artikelDBStrategy;
 

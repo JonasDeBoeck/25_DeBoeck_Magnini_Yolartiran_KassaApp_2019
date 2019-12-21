@@ -10,6 +10,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import model.Artikel;
 
+/**
+ * @Author Thibault Magnini
+ */
 
 public class KassaTabPane extends GridPane {
 

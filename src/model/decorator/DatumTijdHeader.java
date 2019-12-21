@@ -6,6 +6,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+/**
+ * @Author Jonas De Boeck
+ * */
+
 public class DatumTijdHeader implements TicketDecorator {
     private Ticket ticket;
 

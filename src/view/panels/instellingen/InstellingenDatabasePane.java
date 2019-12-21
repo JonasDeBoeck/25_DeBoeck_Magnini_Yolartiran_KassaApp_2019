@@ -12,7 +12,9 @@ import javafx.scene.layout.GridPane;
 
 import java.util.Properties;
 
-
+/**
+ * @Author Thibault Magnini
+ */
 public class InstellingenDatabasePane extends GridPane {
 
     private RadioButton SQL;

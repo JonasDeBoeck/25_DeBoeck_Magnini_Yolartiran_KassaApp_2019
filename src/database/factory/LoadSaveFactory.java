@@ -3,6 +3,10 @@ package database.factory;
 import database.DatabaseException;
 import database.strategy.loadSaveStrategy.LoadSaveStrategy;
 
+/**
+ * @Author Jonas De Boeck, Sinan Yolartiran
+ * */
+
 public class LoadSaveFactory {
     private static LoadSaveFactory uniqueFactory;
 

@@ -2,6 +2,10 @@ package model.factory;
 
 import model.Artikel;
 
+/**
+ * @Author Jonas De Boeck
+ * */
+
 public class ArtikelFactory {
     private static ArtikelFactory uniqueFactory;
 

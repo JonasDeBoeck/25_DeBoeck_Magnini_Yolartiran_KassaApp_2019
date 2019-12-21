@@ -5,6 +5,10 @@ import model.Bereken;
 
 import java.util.List;
 
+/**
+ * @Author Jonas De Boeck
+ * */
+
 public class BTWFooter implements TicketDecorator {
     private Ticket ticket;
 

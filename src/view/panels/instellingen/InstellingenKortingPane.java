@@ -13,8 +13,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
+/**
+ * @Author Thibault Magnini
+ */
+
 public class InstellingenKortingPane extends GridPane {
-    //TODO Bij geen korting alles weg laten bij het opstarten?
     private KassaController controller;
     private Label korting = new Label("Korting Instellingen:");
     private Label getalLabel = new Label("Kies hoevel korting u exact wenst te geven.");

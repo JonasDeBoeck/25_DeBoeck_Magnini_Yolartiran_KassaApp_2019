@@ -6,6 +6,10 @@ import model.Artikel;
 import java.io.File;
 import java.util.Map;
 
+/**
+ * @Author Jonas De Boeck
+ * */
+
 public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy {
 
     //Template methode voor het inlezen

@@ -5,6 +5,10 @@ import model.Artikel;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * @Author Thibault Magnini
+ * */
+
 public interface State extends Serializable{
 
     default void betaal(){

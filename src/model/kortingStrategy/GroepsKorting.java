@@ -6,6 +6,9 @@ import model.ArtikelCategorie;
 
 import java.util.List;
 
+/**
+ * @Author Jonas De Boeck, Sinan Yolartiran
+ * */
 public class GroepsKorting implements KortingStrategy {
 
     private ArtikelCategorie categorie;

@@ -9,6 +9,10 @@ import model.state.State;
 
 import java.util.*;
 
+
+/**
+ * @Author Jonas De Boeck, Thibault Magnini
+ * */
 public class Winkel {
     private Map<String, Artikel> artikels;
     private Winkelwagentje winkelwagentje, onHoldWinkelwagentje;

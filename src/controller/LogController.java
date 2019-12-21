@@ -11,6 +11,10 @@ import view.panels.LogTabPane;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * @Author Jonas De Boeck
+ * */
+
 public class LogController implements Observer {
     private Winkel model;
     private LogTabPane view;

@@ -4,6 +4,10 @@ import model.Artikel;
 
 import java.util.List;
 
+/**
+ * @Author Jonas De Boeck
+ * */
+
 public class AlgemeneFooter implements TicketDecorator {
     private Ticket ticket;
     private String message;

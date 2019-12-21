@@ -7,6 +7,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * @Author Jonas De Boeck
+ * */
+
 public class KassaTicket implements Ticket {
 
     public KassaTicket () {}

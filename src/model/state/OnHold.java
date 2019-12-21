@@ -2,6 +2,10 @@ package model.state;
 
 import model.Winkelwagentje;
 
+/**
+ * @Author Thibault Magnini
+ * */
+
 public class OnHold implements State {
 
     private Winkelwagentje winkelwagentje;

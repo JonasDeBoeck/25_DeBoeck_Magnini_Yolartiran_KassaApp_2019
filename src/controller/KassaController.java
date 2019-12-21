@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @Author Jonas De Boeck, Thibault Magnini
+ * */
+
 public class KassaController implements Subject {
     private KassaView view;
     private Winkel model;

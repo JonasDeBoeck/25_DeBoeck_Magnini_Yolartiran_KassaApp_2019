@@ -6,6 +6,10 @@ import model.factory.KortingStrategyFactory;
 
 import java.util.List;
 
+/**
+ * @Author Jonas De Boeck, Sinan Yolartiran
+ * */
+
 public class KortingContext {
     private KortingStrategy kortingStrategy;
 

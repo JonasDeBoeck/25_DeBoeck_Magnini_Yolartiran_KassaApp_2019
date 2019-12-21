@@ -4,6 +4,9 @@ import database.PropertiesLoadSave;
 import model.Artikel;
 
 import java.util.List;
+/**
+ * @Author Jonas De Boeck, Sinan Yolartiran
+ * */
 
 public class DuursteKorting implements KortingStrategy {
 

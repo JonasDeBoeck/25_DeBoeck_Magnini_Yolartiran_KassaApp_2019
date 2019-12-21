@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * @Author Jonas De Boeck
+ * */
+
 public enum ArtikelCategorie {
     GR1 ("gr1"),
     GR2 ("gr2");

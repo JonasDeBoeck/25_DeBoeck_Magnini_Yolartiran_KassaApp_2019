@@ -5,7 +5,12 @@ import model.Winkelwagentje;
 
 import java.util.List;
 
+/**
+ * @Author Jonas De Boeck, Thibault Magnini
+ * */
+
 public class Betaald implements State{
+
     private Winkelwagentje winkelwagentje;
 
     public Betaald(Winkelwagentje winkelwagentje){

@@ -8,6 +8,10 @@ import model.Winkel;
 import model.observer.Observer;
 import view.KlantMainPane;
 
+/**
+ * @Author Jonas De Boeck, Thibault Magnini
+ * */
+
 public class KlantController implements Observer {
     private KlantMainPane view;
     private Winkel model;
