@@ -12,7 +12,6 @@ import model.Artikel;
 
 
 public class KassaTabPane extends GridPane {
-    //TODO verkoop mag niet doorgaan als aantal te verkopen > aantal in stock
 
     private TableView<Artikel> tabel;
     private KassaController controller;
@@ -123,6 +122,7 @@ public class KassaTabPane extends GridPane {
                 controller.setKorting();
                 korting.setText("Korting: " + controller.getTotaleKorting());
                 totaalMetKorting.setText("Totaal met korting: "+ controller.getTotaalPrijsMetKorting());
+                controller.notifyObserversAfsluit();
                 controller.setStateOnInactief();
                 totaal.setVisible(true);
                 invoer.setVisible(false);
@@ -144,9 +144,9 @@ public class KassaTabPane extends GridPane {
 
         betaal.setOnAction(event -> {
             controller.setStateOnBetaald();
-            controller.notifyObserversAfsluit();
             controller.printKassaBon();
             controller.save("artikel." + PropertiesLoadSave.load("DATABASE"), controller.getWinkelWagentje());
+            controller.notifyObserversBetaal();
             controller.clearCart();
             controller.notifyObservers();
             tabel.setItems(controller.getWinkelWagentje());

@@ -95,6 +95,13 @@ public class KassaController implements Subject {
         }
     }
 
+    @Override
+    public void notifyObserversBetaal() {
+        for (Observer observer : observers) {
+            observer.updateBetaal();
+        }
+    }
+
     //Registreer observer
     @Override
     public void registerObserver(Observer observer) {

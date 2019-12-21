@@ -45,7 +45,7 @@ public class InstellingenTicketDecoraterPane extends GridPane {
         this.add(headerAddons, 2, 2);
         this.add(headerMessage,3,2);
         this.add(footerAddons, 2, 3);
-        this.add(footerMessage,3,2);
+        this.add(footerMessage,3,3);
         this.add(saveSettings, 1, 4);
 
         this.setPadding(new Insets(10,10,10,10));

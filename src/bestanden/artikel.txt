@@ -1,7 +1,7 @@
 1,artikel1,gr1,12.5,7
 2,artikel2,gr1,22.4,-1
 3,bartikel3,gr1,12.5,5
-4,artikel4,gr1,50.5,-9
+4,artikel4,gr1,50.5,-11
 5,artikel5,gr1,2.5,2
 6,bartikel6,gr1,2.5,10
 7,artikel7,gr1,3.75,6

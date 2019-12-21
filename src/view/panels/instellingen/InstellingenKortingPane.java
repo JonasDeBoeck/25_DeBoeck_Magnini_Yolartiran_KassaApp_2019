@@ -113,6 +113,16 @@ public class InstellingenKortingPane extends GridPane {
             invoerGrens.setText(PropertiesLoadSave.load("DREMPEL"));
         }
 
+        if (geenKorting.isSelected()) {
+            comboBoxKortingenSoorten.setVisible(false);
+            getalLabel.setVisible(false);
+            getal.setVisible(false);
+            sliderGetal.setVisible(false);
+            getalKorting.setVisible(false);
+            categorieKeuze.setVisible(false);
+            invoerGrens.setVisible(false);
+        }
+
         sliderGetal.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov,
                                 Number old_val, Number new_val) {

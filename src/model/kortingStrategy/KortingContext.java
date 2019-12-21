@@ -14,8 +14,11 @@ public class KortingContext {
         KortingStrategyFactory factory = KortingStrategyFactory.getInstance();
         kortingStrategy = factory.getStrategy(soortKorting);
     }
+
     //Berekent de korting per product van "artikels"
     public void getKorting (List<Artikel> artikels) {
-        kortingStrategy.berekenPrijs(artikels);
+        if (!PropertiesLoadSave.load("SOORT").equals("GEEN")) {
+            kortingStrategy.berekenPrijs(artikels);
+        }
     }
 }

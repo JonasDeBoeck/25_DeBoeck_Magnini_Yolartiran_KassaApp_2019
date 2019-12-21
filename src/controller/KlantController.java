@@ -36,6 +36,11 @@ public class KlantController implements Observer {
         view.updateAfsluit(totalePrijs, korting, totalePrijsMetKorting);
     }
 
+    @Override
+    public void updateBetaal() {
+        //Geen implementatie
+    }
+
     private void setModel(Winkel model) {
         this.model = model;
     }

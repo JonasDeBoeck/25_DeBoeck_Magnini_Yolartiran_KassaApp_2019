@@ -28,6 +28,11 @@ public class LogController implements Observer {
 
     @Override
     public void updateAfsluit(String totalePrijs, String korting, String totalePrijsMetKorting) {
+        //Geen implementatie
+    }
+
+    @Override
+    public void updateBetaal() {
         model.getWinkelwagentje().setBetaalDatum(LocalDate.now());
         model.getWinkelwagentje().setBetaalTijd(LocalTime.now());
         model.getWinkelwagentje().setArtikelen();
