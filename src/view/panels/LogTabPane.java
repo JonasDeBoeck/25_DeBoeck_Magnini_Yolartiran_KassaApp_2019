@@ -19,7 +19,7 @@ public class LogTabPane extends GridPane {
     public LogTabPane (LogController controller) {
         setController(controller);
         controller.setView(this);
-        label = new Label("Werk pls");
+        label = new Label("Log van verkochte winkelkarretjes:");
 
         tableView = new TableView<>();
 

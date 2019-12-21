@@ -58,23 +58,29 @@ public class InstellingenTicketDecoraterPane extends GridPane {
 
         headerAddons.setVisible(header.isSelected());
         footerAddons.setVisible(footer.isSelected());
-        headerMessage.setVisible(header.isSelected());
-        footerMessage.setVisible(footer.isSelected());
+        headerMessage.setVisible(false);
+        footerMessage.setVisible(false);
 
         if (PropertiesLoadSave.propertyBestaat("HBOODSCHAP")) {
             headerMessage.setText(PropertiesLoadSave.load("HBOODSCHAP"));
         }
 
         if (PropertiesLoadSave.propertyBestaat("FBOODSCHAP")) {
-            headerMessage.setText(PropertiesLoadSave.load("FBOODSCHAP"));
+            footerMessage.setText(PropertiesLoadSave.load("FBOODSCHAP"));
         }
 
         if (PropertiesLoadSave.propertyBestaat("HEADER")) {
             headerAddons.getSelectionModel().select(PropertiesLoadSave.load("HEADER"));
+            if (headerAddons.getSelectionModel().getSelectedItem().toString().equals("Algemene boodschap")) {
+                headerMessage.setVisible(true);
+            }
         }
 
         if (PropertiesLoadSave.propertyBestaat("FOOTER")) {
             footerAddons.getSelectionModel().select(PropertiesLoadSave.load("FOOTER"));
+            if (footerAddons.getSelectionModel().getSelectedItem().toString().equals("Algemene boodschap")) {
+                footerMessage.setVisible(true);
+            }
         }
 
         header.setOnAction(event -> {
@@ -87,18 +93,42 @@ public class InstellingenTicketDecoraterPane extends GridPane {
             headerAddons.setVisible(header.isSelected());
         });
 
+        footerAddons.setOnAction(event -> {
+            if (footerAddons.getSelectionModel().getSelectedItem().toString().equals("Algemene boodschap")) {
+                footerMessage.setVisible(true);
+            } else {
+                footerMessage.setVisible(false);
+            }
+        });
+
+        headerAddons.setOnAction(event -> {
+            if (headerAddons.getSelectionModel().getSelectedItem().toString().equals("Algemene boodschap")) {
+                headerMessage.setVisible(true);
+            } else {
+                headerMessage.setVisible(false);
+            }
+        });
+
         saveSettings.setOnAction(event -> {
             if (header.isSelected()) {
                 if (headerAddons.getValue().equals("Algemene boodschap")) {
                     PropertiesLoadSave.save(headerMessage.getText(), "HBOODSCHAP");
+                } else {
+                    PropertiesLoadSave.save("", "HBOODSCHAP");
                 }
                 PropertiesLoadSave.save(headerAddons.getValue().toString(), "HEADER");
+            } else {
+                PropertiesLoadSave.save("", "HEADER");
             }
             if (footer.isSelected()) {
                 if (footerAddons.getValue().equals("Algemene boodschap")) {
-                    PropertiesLoadSave.save(headerMessage.getText(), "FBOODSCHAP");
+                    PropertiesLoadSave.save(footerMessage.getText(), "FBOODSCHAP");
+                } else {
+                    PropertiesLoadSave.save("", "FBOODSCHAP");
                 }
                 PropertiesLoadSave.save(footerAddons.getValue().toString(), "FOOTER");
+            } else {
+                PropertiesLoadSave.save("", "FOOTER");
             }
             Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
             confirmation.setTitle("INFO");
