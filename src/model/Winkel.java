@@ -102,15 +102,15 @@ public class Winkel {
     }
 
     public void setOnHold(){
-        onHoldWinkelwagentje.getArtikels().addAll(this.winkelwagentje.getArtikels());
-        clearCart();
         winkelwagentje.setOnHold();
+        onHoldWinkelwagentje = this.winkelwagentje;
+        clearCart();
     }
 
     public void setOffHold(){
-        winkelwagentje.getArtikels().addAll(this.onHoldWinkelwagentje.getArtikels());
-        this.onHoldWinkelwagentje.getArtikels().clear();
+        winkelwagentje = onHoldWinkelwagentje;
         winkelwagentje.setActief();
+        this.onHoldWinkelwagentje = new Winkelwagentje();
     }
 
     public void setKorting() {

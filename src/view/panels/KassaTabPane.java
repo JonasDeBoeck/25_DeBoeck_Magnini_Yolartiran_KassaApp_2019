@@ -30,7 +30,7 @@ public class KassaTabPane extends GridPane {
         totaal = new Label();
         afsluit = new Button("Afsluiten");
         onHold = new Button("On hold");
-        offHold = new Button("actief");
+        offHold = new Button("Haal on hold winkelwagentje terug");
         totaalMetKorting = new Label();
         korting = new Label();
         annuleer = new Button("ANNULEER");
@@ -197,7 +197,7 @@ public class KassaTabPane extends GridPane {
                 Alert fout = new Alert(Alert.AlertType.ERROR);
                 fout.setTitle("FOUT");
                 fout.setHeaderText("Lege on hold winkelwagen");
-                fout.setContentText("Er is momenteel geen lege on hold");
+                fout.setContentText("Er is momenteel geen on hold winkelwagentje");
                 fout.showAndWait();
             } else {
                 controller.zetOffHold();
