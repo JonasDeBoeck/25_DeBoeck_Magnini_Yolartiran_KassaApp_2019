@@ -19,12 +19,8 @@ public class ArtikelFactory {
     }
 
     public Artikel createArtikel(String artikelId, String naam, double prijs, int aantalInStock, String artikelCategorie) {
-        Artikel artikel = null;
-        if (artikelCategorie.equals("gr1")) {
-            artikel = new Artikel(artikelId, naam, prijs, aantalInStock, artikelCategorie);
-        } else if (artikelCategorie.equals("gr2")) {
-            artikel = new Artikel(artikelId, naam, prijs, aantalInStock, artikelCategorie);
-        }
+        Artikel artikel;
+        artikel = new Artikel(artikelId, naam, prijs, aantalInStock, artikelCategorie);
         return artikel;
     }
 }
