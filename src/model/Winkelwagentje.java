@@ -144,7 +144,7 @@ public class Winkelwagentje implements Serializable{
     public void setKorting() {
         double korting = 0;
         for (Artikel artikel : artikels) {
-            korting += artikel.getPrijs() - artikel.getKorting();
+            korting += artikel.getKorting();
         }
         this.korting = korting;
     }

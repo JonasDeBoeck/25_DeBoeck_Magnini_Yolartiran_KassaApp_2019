@@ -178,4 +178,8 @@ public class KassaController implements Subject {
     public void printKassaBon () {
         model.printTicket();
     }
+
+    public boolean leegMandje() {
+        return model.getWinkelwagentje().getArtikels().isEmpty();
+    }
 }

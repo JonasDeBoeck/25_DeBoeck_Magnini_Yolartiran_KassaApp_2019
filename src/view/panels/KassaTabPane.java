@@ -121,27 +121,35 @@ public class KassaTabPane extends GridPane {
 
 
         afsluit.setOnAction(event -> {
-            try {
-                controller.setKorting();
-                korting.setText("Korting: " + controller.getTotaleKorting());
-                totaalMetKorting.setText("Totaal met korting: "+ controller.getTotaalPrijsMetKorting());
-                controller.notifyObserversAfsluit();
-                controller.setStateOnInactief();
-                totaal.setVisible(true);
-                invoer.setVisible(false);
-                annuleer.setVisible(true);
-                offHold.setVisible(false);
-                onHold.setVisible(false);
-                betaal.setVisible(true);
-                afsluit.setVisible(false);
-                korting.setVisible(true);
-                totaalMetKorting.setVisible(true);
-            } catch (IndexOutOfBoundsException e){
+            if (controller.leegMandje()) {
                 Alert fout = new Alert(Alert.AlertType.ERROR);
                 fout.setTitle("FOUT");
                 fout.setHeaderText("Lege Winkelkar");
                 fout.setContentText("Je kan niet afsluiten met een lege winkel kar");
                 fout.showAndWait();
+            } else {
+                try {
+                    controller.setKorting();
+                    korting.setText("Korting: " + controller.getTotaleKorting());
+                    totaalMetKorting.setText("Totaal met korting: " + controller.getTotaalPrijsMetKorting());
+                    controller.notifyObserversAfsluit();
+                    controller.setStateOnInactief();
+                    totaal.setVisible(true);
+                    invoer.setVisible(false);
+                    annuleer.setVisible(true);
+                    offHold.setVisible(false);
+                    onHold.setVisible(false);
+                    betaal.setVisible(true);
+                    afsluit.setVisible(false);
+                    korting.setVisible(true);
+                    totaalMetKorting.setVisible(true);
+                } catch (IndexOutOfBoundsException e) {
+                    Alert fout = new Alert(Alert.AlertType.ERROR);
+                    fout.setTitle("FOUT");
+                    fout.setHeaderText("Lege Winkelkar");
+                    fout.setContentText("Je kan niet afsluiten met een lege winkel kar");
+                    fout.showAndWait();
+                }
             }
         });
 

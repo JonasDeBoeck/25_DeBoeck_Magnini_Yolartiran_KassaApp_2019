@@ -14,9 +14,8 @@ public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy {
 
     //Template methode voor het inlezen
     public Map<String, Artikel> load(String filename) {
-        String fullPath = fullPathName(filename);
-        File toRead = pathToFile(fullPath);
-        return read(toRead);
+        String fullPath = fullPathNameJar(filename);
+        return read(fullPath);
     }
 
     //Template methode voor het wegschrijven
@@ -28,7 +27,11 @@ public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy {
 
     public abstract void write(File toWrite, Map<String, Artikel> artikels);
 
-    public abstract Map<String, Artikel> read (File toRead);
+    public abstract Map<String, Artikel> read (String toRead);
+
+    public String fullPathNameJar (String filename) {
+        return "/bestanden/" + filename;
+    }
 
     public String fullPathName (String filename) {
         return "src/bestanden/" + filename;

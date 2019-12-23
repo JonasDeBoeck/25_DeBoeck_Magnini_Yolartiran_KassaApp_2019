@@ -18,10 +18,10 @@ public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate {
 
     //Leest de text file in
     @Override
-    public Map<String, Artikel> read(File toRead) {
+    public Map<String, Artikel> read(String toRead) {
         HashMap<String, Artikel> artikels = new HashMap<>();
         ArtikelFactory artikelFactory = ArtikelFactory.getInstance();
-        try (Scanner scanner = new Scanner(toRead, "UTF-8")){
+        try (Scanner scanner = new Scanner(this.getClass().getResourceAsStream(toRead), "UTF-8")){
             while (scanner.hasNextLine()) {
                 Scanner lijnScanner = new Scanner(scanner.nextLine());
                 lijnScanner.useDelimiter(",");
@@ -36,7 +36,7 @@ public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate {
                 artikels.put(artikelId, artikel);
                 lijnScanner.close();
             }
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             Alert fout = new Alert(Alert.AlertType.ERROR);
             fout.setTitle("Fout bij het inlezen");
             fout.setHeaderText("Het opgegeven bestand kan niet worden gevonden");
