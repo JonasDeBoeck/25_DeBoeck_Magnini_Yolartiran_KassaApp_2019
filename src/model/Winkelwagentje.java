@@ -18,6 +18,7 @@ public class Winkelwagentje implements Serializable{
     private String artikelen;
     private LocalDate betaalDatum;
     private LocalTime betaalTijd;
+    private double prijs, korting, teBetalen;
 
     public Winkelwagentje () {
         this.artikels = new ArrayList<>();
@@ -27,6 +28,9 @@ public class Winkelwagentje implements Serializable{
         geannuleerd = new Geannuleerd(this);
         betaald = new Betaald(this);
         state = actief;
+        this.prijs = 0;
+        this.korting = 0;
+        this.teBetalen = 0;
     }
 
     public void removeArtikel(Artikel artikel) {
@@ -123,5 +127,37 @@ public class Winkelwagentje implements Serializable{
             info += artikel.getNaam() + ", ";
         }
         this.artikelen = info.substring(0, info.length()-2);
+    }
+
+    public void setTeBetalen() {
+        this.teBetalen = this.prijs - this.korting;
+    }
+
+    public void setPrijs() {
+        double prijs = 0;
+        for (Artikel artikel : artikels) {
+            prijs += artikel.getPrijs();
+        }
+        this.prijs = prijs;
+    }
+
+    public void setKorting() {
+        double korting = 0;
+        for (Artikel artikel : artikels) {
+            korting += artikel.getPrijs() - artikel.getKorting();
+        }
+        this.korting = korting;
+    }
+
+    public double getKorting() {
+        return korting;
+    }
+
+    public double getPrijs() {
+        return prijs;
+    }
+
+    public double getTeBetalen() {
+        return teBetalen;
     }
 }

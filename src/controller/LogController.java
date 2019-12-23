@@ -39,6 +39,9 @@ public class LogController implements Observer {
     public void updateBetaal() {
         model.getWinkelwagentje().setBetaalDatum(LocalDate.now());
         model.getWinkelwagentje().setBetaalTijd(LocalTime.now());
+        model.getWinkelwagentje().setPrijs();
+        model.getWinkelwagentje().setKorting();
+        model.getWinkelwagentje().setTeBetalen();
         model.getWinkelwagentje().setArtikelen();
         verkopen.add(model.getWinkelwagentje());
         view.update(verkopen);

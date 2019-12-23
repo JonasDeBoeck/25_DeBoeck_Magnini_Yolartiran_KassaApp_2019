@@ -1,6 +1,5 @@
-package database.strategy.loadSaveStrategy;
+package database;
 
-import database.TekstLoadSaveTemplate;
 import javafx.scene.control.Alert;
 import model.Artikel;
 import model.factory.ArtikelFactory;

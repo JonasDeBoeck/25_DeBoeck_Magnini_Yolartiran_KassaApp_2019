@@ -35,7 +35,7 @@ public class TotalePrijsFooter implements TicketDecorator {
     private double getTotaalKorting (List<Artikel> artikelsList) {
         double korting = 0;
         for (Artikel artikel : artikelsList) {
-            korting += artikel.getKorting();
+            korting += artikel.getPrijs() - artikel.getKorting();
         }
         return korting;
     }

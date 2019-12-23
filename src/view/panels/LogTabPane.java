@@ -37,7 +37,16 @@ public class LogTabPane extends GridPane {
         TableColumn<Winkelwagentje, LocalTime> tijd = new TableColumn("Betaal tijd");
         tijd.setCellValueFactory(new PropertyValueFactory<>("betaalTijd"));
 
-        tableView.getColumns().addAll(artikels, datum, tijd);
+        TableColumn<Winkelwagentje, Double> prijs = new TableColumn("Totaal prijs");
+        prijs.setCellValueFactory(new PropertyValueFactory<>("prijs"));
+
+        TableColumn<Winkelwagentje, Double> korting = new TableColumn("Totale korting");
+        korting.setCellValueFactory(new PropertyValueFactory<>("korting"));
+
+        TableColumn<Winkelwagentje, Double> teBetalen = new TableColumn("Te betalen");
+        teBetalen.setCellValueFactory(new PropertyValueFactory<>("teBetalen"));
+
+        tableView.getColumns().addAll(artikels, datum, tijd, prijs, korting, teBetalen);
 
         this.add(label, 1, 1);
         this.add(tableView, 1, 2);

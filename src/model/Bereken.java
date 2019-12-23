@@ -19,14 +19,18 @@ public class Bereken {
     public static double berekenTotaalKorting(List<Artikel> artikels) {
         double korting = 0;
         for (Artikel artikel : artikels) {
-            korting += artikel.getKorting();
+            korting += artikel.getPrijs() - artikel.getKorting();
         }
         return korting;
     }
 
     //Berekent totale prijs inc. korting
     public static double berekenTotaalPrijsMetKorting(List<Artikel> artikels) {
-        return berekenTotaalPrijs(artikels) - berekenTotaalKorting(artikels);
+        double prijs = 0;
+        for (Artikel artikel : artikels) {
+            prijs += artikel.getKorting();
+        }
+        return prijs;
     }
 
     //Berekent de totale BTW

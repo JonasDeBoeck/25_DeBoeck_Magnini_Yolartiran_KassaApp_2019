@@ -34,7 +34,7 @@ public class LoadSaveFactory {
         }
         LoadSaveStrategy loadSave = null;
         try {
-            Class loadSaveClass = Class.forName("database.strategy.loadSaveStrategy." + strategy);
+            Class loadSaveClass = Class.forName("database." + strategy);
             Object loadSaveObject = loadSaveClass.newInstance();
             loadSave = (LoadSaveStrategy) loadSaveObject;
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException  e) {

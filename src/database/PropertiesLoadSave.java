@@ -32,13 +32,16 @@ public class PropertiesLoadSave {
     //Schrijft de value met waarde 'keuze' weg naar de property met waarde 'property'
     public static void save(String keuze, String property) {
 
-        try (FileInputStream a =new FileInputStream("src/bestanden/config.properties"); FileOutputStream fileOutputStream = new FileOutputStream("src/bestanden/config.properties")){
-
+        try {
+            FileInputStream a =new FileInputStream("src/bestanden/config.properties");
             Properties prop = new Properties();
             prop.load(a);
+            a.close();
 
+            FileOutputStream fileOutputStream = new FileOutputStream("src/bestanden/config.properties");
             prop.setProperty(property, keuze);
             prop.store(fileOutputStream, null);
+            fileOutputStream.close();
 
         }catch (Exception e ) {
             Alert fout = new Alert(Alert.AlertType.ERROR);
