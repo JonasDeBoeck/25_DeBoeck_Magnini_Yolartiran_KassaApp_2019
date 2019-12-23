@@ -80,8 +80,8 @@ public class InstellingenKortingPane extends GridPane {
         this.setHgap(10);
 
         //Alles wat in de Properties file aangeduid staat wordt aangeduid bij het opstartenb
-        if (PropertiesLoadSave.propertyBestaat("SOORT")) {
-            String soort = PropertiesLoadSave.load("SOORT");
+        if (controller.checkBestaat("SOORT")) {
+            String soort = controller.loadProperty("SOORT");/*PropertiesLoadSave.load("SOORT")*/;
             soort = soort.substring(0,1).toUpperCase() + soort.substring(1).toLowerCase();
             switch (soort) {
                 case "Grens":
@@ -96,10 +96,10 @@ public class InstellingenKortingPane extends GridPane {
                 default:
                     geenKorting.setSelected(true);
             }
-            if (!PropertiesLoadSave.load("SOORT").equals("GEEN")) {
-                sliderGetal.setValue(Double.parseDouble(PropertiesLoadSave.load("GETAL")));
-                getal.setText(PropertiesLoadSave.load("GETAL"));
-                String type = PropertiesLoadSave.load("TYPE");
+            if (!controller.loadProperty("SOORT").equals("GEEN")) {
+                sliderGetal.setValue(Double.parseDouble(controller.loadProperty("GETAL")));
+                getal.setText(controller.loadProperty("GETAL"));
+                String type = controller.loadProperty("TYPE");
                 type = type.substring(0, 1).toUpperCase() + type.substring(1).toLowerCase();
                 comboBoxKortingenSoorten.getSelectionModel().select(type);
             }
@@ -109,11 +109,11 @@ public class InstellingenKortingPane extends GridPane {
         invoerGrens.setVisible(grensKorting.isSelected());
 
         if (groepKorting.isSelected()) {
-            categorieKeuze.getSelectionModel().select(PropertiesLoadSave.load("CATEGORIE"));
+            categorieKeuze.getSelectionModel().select(controller.loadProperty("CATEGORIE"));
         }
 
         if (grensKorting.isSelected()) {
-            invoerGrens.setText(PropertiesLoadSave.load("DREMPEL"));
+            invoerGrens.setText(controller.loadProperty("DREMPEL"));
         }
 
         if (geenKorting.isSelected()) {
@@ -182,32 +182,32 @@ public class InstellingenKortingPane extends GridPane {
 
         saveKorting.setOnAction(event -> {
             if (kortingGroep.getSelectedToggle() == groepKorting){
-                PropertiesLoadSave.save("", "DREMPEL");
-                PropertiesLoadSave.save(comboBoxKortingenSoorten.getValue().toString(), "TYPE");
-                PropertiesLoadSave.save(Integer.toString((int) Math.round(sliderGetal.getValue())), "GETAL");
-                PropertiesLoadSave.save(categorieKeuze.getValue().toString(), "CATEGORIE");
-                PropertiesLoadSave.save("GROEP", "SOORT");
+                controller.saveProperty("", "DREMPEL");
+                controller.saveProperty(comboBoxKortingenSoorten.getValue().toString(), "TYPE");
+                controller.saveProperty(Integer.toString((int) Math.round(sliderGetal.getValue())), "GETAL");
+                controller.saveProperty(categorieKeuze.getValue().toString(), "CATEGORIE");
+                controller.saveProperty("GROEP", "SOORT");
                 showAlert();
             } else if (kortingGroep.getSelectedToggle() == grensKorting){
-                PropertiesLoadSave.save(invoerGrens.getText(), "DREMPEL");
-                PropertiesLoadSave.save(comboBoxKortingenSoorten.getValue().toString(), "TYPE");
-                PropertiesLoadSave.save(Integer.toString((int) Math.round(sliderGetal.getValue())), "GETAL");
-                PropertiesLoadSave.save("", "CATEGORIE");
-                PropertiesLoadSave.save("GRENS", "SOORT");
+                controller.saveProperty(invoerGrens.getText(), "DREMPEL");
+                controller.saveProperty(comboBoxKortingenSoorten.getValue().toString(), "TYPE");
+                controller.saveProperty(Integer.toString((int) Math.round(sliderGetal.getValue())), "GETAL");
+                controller.saveProperty("", "CATEGORIE");
+                controller.saveProperty("GRENS", "SOORT");
                 showAlert();
             } else if (kortingGroep.getSelectedToggle() == duursteKorting){
-                PropertiesLoadSave.save(comboBoxKortingenSoorten.getValue().toString(), "TYPE");
-                PropertiesLoadSave.save(Integer.toString(Math.round((int) sliderGetal.getValue())), "GETAL");
-                PropertiesLoadSave.save("", "CATEGORIE");
-                PropertiesLoadSave.save("", "DREMPEL");
-                PropertiesLoadSave.save("DUURSTE", "SOORT");
+                controller.saveProperty(comboBoxKortingenSoorten.getValue().toString(), "TYPE");
+                controller.saveProperty(Integer.toString(Math.round((int) sliderGetal.getValue())), "GETAL");
+                controller.saveProperty("", "CATEGORIE");
+                controller.saveProperty("", "DREMPEL");
+                controller.saveProperty("DUURSTE", "SOORT");
                 showAlert();
             } else if (kortingGroep.getSelectedToggle() == geenKorting){
-                PropertiesLoadSave.save("", "TYPE");
-                PropertiesLoadSave.save("", "GETAL");
-                PropertiesLoadSave.save("", "CATEGORIE");
-                PropertiesLoadSave.save("", "DREMPEL");
-                PropertiesLoadSave.save("GEEN", "SOORT");
+                controller.saveProperty("", "TYPE");
+                controller.saveProperty("", "GETAL");
+                controller.saveProperty("", "CATEGORIE");
+                controller.saveProperty("", "DREMPEL");
+                controller.saveProperty("GEEN", "SOORT");
                 showAlert();
             }
         });

@@ -1,5 +1,6 @@
 package controller;
 
+import database.PropertiesLoadSave;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Artikel;
@@ -122,6 +123,18 @@ public class KassaController implements Subject {
     public void zetOffHold(){
         counter = 0;
         model.setOffHold();
+    }
+
+    public String loadProperty(String prop){
+        return PropertiesLoadSave.load(prop);
+    }
+
+    public boolean checkBestaat(String prop){
+        return PropertiesLoadSave.propertyBestaat(prop);
+    }
+
+    public void saveProperty(String keuze, String prop){
+        PropertiesLoadSave.save(keuze, prop);
     }
 
     public void setKorting() {

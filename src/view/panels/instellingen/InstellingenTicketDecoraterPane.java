@@ -56,31 +56,31 @@ public class InstellingenTicketDecoraterPane extends GridPane {
         this.setHgap(10);
 
         //Alles wat in de Properties file aangeduid staat wordt aangeduid bij het opstartenb
-        header.setSelected(PropertiesLoadSave.propertyBestaat("HEADER"));
-        footer.setSelected(PropertiesLoadSave.propertyBestaat("FOOTER"));
+        header.setSelected(controller.checkBestaat("HEADER"));
+        footer.setSelected(controller.checkBestaat("FOOTER"));
 
         headerAddons.setVisible(header.isSelected());
         footerAddons.setVisible(footer.isSelected());
         headerMessage.setVisible(false);
         footerMessage.setVisible(false);
 
-        if (PropertiesLoadSave.propertyBestaat("HBOODSCHAP")) {
-            headerMessage.setText(PropertiesLoadSave.load("HBOODSCHAP"));
+        if (controller.checkBestaat("HBOODSCHAP")) {
+            headerMessage.setText(controller.loadProperty("HBOODSCHAP"));
         }
 
-        if (PropertiesLoadSave.propertyBestaat("FBOODSCHAP")) {
-            footerMessage.setText(PropertiesLoadSave.load("FBOODSCHAP"));
+        if (controller.checkBestaat("FBOODSCHAP")) {
+            footerMessage.setText(controller.loadProperty("FBOODSCHAP"));
         }
 
         if (PropertiesLoadSave.propertyBestaat("HEADER")) {
-            headerAddons.getSelectionModel().select(PropertiesLoadSave.load("HEADER"));
+            headerAddons.getSelectionModel().select(controller.loadProperty("HEADER"));
             if (headerAddons.getSelectionModel().getSelectedItem().toString().equals("Algemene boodschap")) {
                 headerMessage.setVisible(true);
             }
         }
 
         if (PropertiesLoadSave.propertyBestaat("FOOTER")) {
-            footerAddons.getSelectionModel().select(PropertiesLoadSave.load("FOOTER"));
+            footerAddons.getSelectionModel().select(controller.loadProperty("FOOTER"));
             if (footerAddons.getSelectionModel().getSelectedItem().toString().equals("Algemene boodschap")) {
                 footerMessage.setVisible(true);
             }
@@ -115,23 +115,23 @@ public class InstellingenTicketDecoraterPane extends GridPane {
         saveSettings.setOnAction(event -> {
             if (header.isSelected()) {
                 if (headerAddons.getValue().equals("Algemene boodschap")) {
-                    PropertiesLoadSave.save(headerMessage.getText(), "HBOODSCHAP");
+                    controller.saveProperty(headerMessage.getText(), "HBOODSCHAP");
                 } else {
-                    PropertiesLoadSave.save("", "HBOODSCHAP");
+                    controller.saveProperty("", "HBOODSCHAP");
                 }
-                PropertiesLoadSave.save(headerAddons.getValue().toString(), "HEADER");
+                controller.saveProperty(headerAddons.getValue().toString(), "HEADER");
             } else {
-                PropertiesLoadSave.save("", "HEADER");
+                controller.saveProperty("", "HEADER");
             }
             if (footer.isSelected()) {
                 if (footerAddons.getValue().equals("Algemene boodschap")) {
-                    PropertiesLoadSave.save(footerMessage.getText(), "FBOODSCHAP");
+                    controller.saveProperty(footerMessage.getText(), "FBOODSCHAP");
                 } else {
-                    PropertiesLoadSave.save("", "FBOODSCHAP");
+                    controller.saveProperty("", "FBOODSCHAP");
                 }
-                PropertiesLoadSave.save(footerAddons.getValue().toString(), "FOOTER");
+                controller.saveProperty(footerAddons.getValue().toString(), "FOOTER");
             } else {
-                PropertiesLoadSave.save("", "FOOTER");
+                controller.saveProperty("", "FOOTER");
             }
             Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
             confirmation.setTitle("INFO");
